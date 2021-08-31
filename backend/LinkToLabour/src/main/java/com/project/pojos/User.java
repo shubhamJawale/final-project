@@ -13,12 +13,33 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class User {
 	
+	public User(String userName, String emailId, long mobileNo, String address, int pincode, String password,
+			Role role) {
+		super();
+		this.userName = userName;
+		this.emailId = emailId;
+		this.mobileNo = mobileNo;
+		Address = address;
+		this.pincode = pincode;
+		this.password = password;
+		this.role = role;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
