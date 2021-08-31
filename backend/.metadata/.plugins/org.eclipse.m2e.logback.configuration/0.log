@@ -1,0 +1,28 @@
+2021-08-31 12:28:22,923 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2021-08-31 12:33:43,499 [Worker-9: Import Getting Started Content] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.project:LinkToLabour:0.0.1-SNAPSHOT @ D:\final project\backeknd\LinkToLabour\pom.xml.
+2021-08-31 12:33:46,467 [Worker-9: Import Getting Started Content] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/thymeleaf/extras/thymeleaf-extras-springsecurity5/3.0.4.RELEASE/thymeleaf-extras-springsecurity5-3.0.4.RELEASE.pom
+2021-08-31 12:33:46,827 [Worker-9: Import Getting Started Content] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/thymeleaf/extras/thymeleaf-extras-springsecurity5/3.0.4.RELEASE/thymeleaf-extras-springsecurity5-3.0.4.RELEASE.pom
+2021-08-31 12:33:47,963 [Worker-9: Import Getting Started Content] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/thymeleaf/extras/thymeleaf-extras-springsecurity5/3.0.4.RELEASE/thymeleaf-extras-springsecurity5-3.0.4.RELEASE.jar
+2021-08-31 12:33:48,618 [Worker-9: Import Getting Started Content] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/thymeleaf/extras/thymeleaf-extras-springsecurity5/3.0.4.RELEASE/thymeleaf-extras-springsecurity5-3.0.4.RELEASE.jar
+2021-08-31 12:33:53,100 [Worker-9: Import Getting Started Content] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /LinkToLabour/src/main/java
+2021-08-31 12:33:53,101 [Worker-9: Import Getting Started Content] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /LinkToLabour/src/main/resources
+2021-08-31 12:33:53,113 [Worker-9: Import Getting Started Content] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /LinkToLabour/src/main/resources
+2021-08-31 12:33:53,129 [Worker-9: Import Getting Started Content] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /LinkToLabour/src/test/java
+2021-08-31 12:33:53,239 [Worker-14: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/thymeleaf/extras/thymeleaf-extras-springsecurity5/3.0.4.RELEASE/thymeleaf-extras-springsecurity5-3.0.4.RELEASE-sources.jar
+2021-08-31 12:33:53,763 [Worker-14: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/thymeleaf/extras/thymeleaf-extras-springsecurity5/3.0.4.RELEASE/thymeleaf-extras-springsecurity5-3.0.4.RELEASE-sources.jar
+2021-08-31 12:33:54,974 [Worker-14: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE
+2021-08-31 12:34:01,336 [Worker-9: Import Getting Started Content] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 24 sec
+2021-08-31 12:34:01,343 [Worker-9: Import Getting Started Content] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2021-08-31 12:34:03,394 [Worker-9: Import Getting Started Content] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.project:LinkToLabour:0.0.1-SNAPSHOT @ D:\final project\backeknd\LinkToLabour\pom.xml.
+2021-08-31 12:34:05,994 [Worker-9: Import Getting Started Content] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /LinkToLabour/src/main/java
+2021-08-31 12:34:05,994 [Worker-9: Import Getting Started Content] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /LinkToLabour/src/main/resources
+2021-08-31 12:34:05,995 [Worker-9: Import Getting Started Content] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /LinkToLabour/src/main/resources
+2021-08-31 12:34:05,997 [Worker-9: Import Getting Started Content] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /LinkToLabour/src/test/java
+2021-08-31 12:34:07,652 [Worker-9: Import Getting Started Content] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 6 sec
+2021-08-31 12:34:09,631 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-08-31 12:34:09,632 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2021-08-31 12:34:09,640 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-08-31 12:34:09,665 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-08-31 12:34:09,668 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-08-31 12:34:09,669 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2021-08-31 12:34:09,669 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\final project\backeknd\LinkToLabour\src\test\resources
