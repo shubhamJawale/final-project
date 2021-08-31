@@ -1,0 +1,8 @@
+package com.project.pojos;
+
+public class Labour {
+	private int labourId;
+	private User user;
+	private Contractor contractor;
+
+}

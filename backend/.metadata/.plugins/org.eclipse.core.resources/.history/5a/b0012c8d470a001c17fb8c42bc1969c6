@@ -1,0 +1,13 @@
+package com.project.pojos;
+
+import java.util.List;
+
+public class AssignedWork {
+	private int aWorkId;
+	
+	private Work work;
+	private User user;
+	private List<Bidding> bidding;
+	private String status;
+		
+}

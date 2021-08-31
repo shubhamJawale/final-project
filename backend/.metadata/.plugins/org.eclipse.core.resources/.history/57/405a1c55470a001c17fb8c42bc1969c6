@@ -1,0 +1,11 @@
+package com.project.pojos;
+
+import java.util.Date;
+
+public class Contractor {
+	private int contractorId;
+	private User user;
+	private String LicenceNo;
+	private Date ExpiryDate;
+
+}

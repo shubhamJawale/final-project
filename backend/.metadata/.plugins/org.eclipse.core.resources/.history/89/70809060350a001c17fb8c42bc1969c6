@@ -1,0 +1,10 @@
+package com.project.pojos;
+
+public class Bidding {
+
+			private int biddingId;
+			
+			//foriegn key
+			private int workId;
+	
+}

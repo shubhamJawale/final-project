@@ -1,0 +1,14 @@
+package com.project.pojos;
+
+public class Review {
+
+	private int reviewId;
+	private String title;
+	private String description;
+	private int rating;
+	private Contractor contractor;
+	private Labour labour;
+	private int userId;
+	
+	
+}

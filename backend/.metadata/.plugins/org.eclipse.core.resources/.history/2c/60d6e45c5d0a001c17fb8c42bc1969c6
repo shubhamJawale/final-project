@@ -1,0 +1,17 @@
+package com.project.pojos;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
+public class Labour {
+	private int labourId;
+	private User user;
+	private Contractor contractor;
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Review> reviewList;
+
+}

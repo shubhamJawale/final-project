@@ -1,0 +1,9 @@
+package com.project.pojos;
+
+public class Contractor {
+	private int contractorId;
+	private User user;
+	private String LicenceNo;
+	private String Exirationdate;
+
+}

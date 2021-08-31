@@ -1,0 +1,23 @@
+package com.project.pojos;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+public class Contractor {
+	private int contractorId;
+	private User user;
+	private String LicenceNo;
+	private Date ExpiryDate;
+	
+	private List<Labour> labourList;
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name="ContractorReview",joinColumns =@JoinColumn(name="ContractorId"), inverseJoinColumns = @JoinColumn(name="ReviewId"))
+	private List<Review> reviewList;
+
+}
