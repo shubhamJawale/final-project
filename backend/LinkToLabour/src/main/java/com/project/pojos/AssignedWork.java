@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 public class AssignedWork {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int aWorkId;
+	private int assignedWorkId;
 
 	@OneToOne( fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE,
 			CascadeType.PERSIST, CascadeType.REFRESH })
@@ -25,10 +25,12 @@ public class AssignedWork {
 	
 	//private User user;
 	
-	@OneToOne( fetch = FetchType.LAZY, cascade =  { CascadeType.DETACH, CascadeType.MERGE,
+	@OneToOne(/*mappedBy = "AssignedWork",*/fetch = FetchType.LAZY, cascade =  { CascadeType.DETACH, CascadeType.MERGE,
 			CascadeType.PERSIST, CascadeType.REFRESH })
-	@JoinColumn(name="BiddingId")
+	//@JoinColumn(name="BiddingId")
 	private Bidding bidding;
+	
+	
 	private String status;
 
 }

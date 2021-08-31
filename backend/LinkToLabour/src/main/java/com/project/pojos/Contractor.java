@@ -27,17 +27,17 @@ public class Contractor {
 	@JoinColumn(name = "UserId")
 	private User user;
 	
-	@OneToMany(mappedBy = "Contractor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "contractor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Bidding> biddingList;
 	
 	private String LicenceNo;
 	private Date ExpiryDate;
 
-	@OneToMany(mappedBy = "Contractor", fetch =  FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+	@OneToMany(mappedBy = "contractor", fetch =  FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH })
 	private List<Labour> labourList;
 
-	@OneToMany(mappedBy = "Contractor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "contractor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 
 	private List<Review> reviewList;
 

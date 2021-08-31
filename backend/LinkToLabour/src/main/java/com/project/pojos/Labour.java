@@ -30,11 +30,11 @@ public class Labour {
 	@JoinColumn(name="ContractorId")
 	private Contractor contractor;
 
-	@OneToMany(mappedBy = "Labour", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "labour", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@Column(nullable = true)
 	private List<Review> reviewList;
 
 	
-	@OneToMany(mappedBy = "Labour", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "labour", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Bidding> biddingList;
 }

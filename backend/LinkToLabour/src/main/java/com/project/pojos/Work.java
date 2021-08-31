@@ -27,17 +27,19 @@ public class Work {
 	private double expectedAmount;
 	private String status;
 	// foreign key
+	
+	// user 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH })
 	@JoinColumn(name="UserId")
 	private User user;
 	
-	@OneToOne(mappedBy = "Work", fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@OneToOne(mappedBy = "work", fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	
 	private AssignedWork assignedWork;
 	
 	
-	@OneToMany(mappedBy = "Work", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "work", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Bidding> biddingList;
 
 }
