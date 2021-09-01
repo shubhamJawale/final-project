@@ -27,6 +27,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -43,7 +44,7 @@ public class Bidding {
 	private LocalDate fromDate;
 	@NotNull
 	private LocalDate toDate;
-
+	
 	@NotNull
 	private Status status;
 
@@ -62,7 +63,10 @@ public class Bidding {
 	// foreign key
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH })
-	@JoinTable(name = "Contractor_Bidding_List", joinColumns = @JoinColumn(name = "biddingId"), inverseJoinColumns = @JoinColumn(name = "contractorId"))
+	@JoinTable(
+			  name = "Contractor_Bidding_List", 
+			  joinColumns = @JoinColumn(name = "biddingId"), 
+			  inverseJoinColumns = @JoinColumn(name = "contractorId"))
 	private List<Contractor> contractorList;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
@@ -72,11 +76,13 @@ public class Bidding {
 
 	public Bidding() {
 		super();
-	}
+		}
+
+
 
 	public Bidding(int biddingId, String description, @NotNull double amount, @NotNull LocalDate fromDate,
-			@NotNull LocalDate toDate, Status status, AssignedWork assignedWork, Work work,
-			List<Contractor> contractorList, Labour labour) {
+			@NotNull LocalDate toDate,Status status, AssignedWork assignedWork, Work work, List<Contractor> contractorList,
+			Labour labour) {
 		super();
 		this.biddingId = biddingId;
 		this.description = description;
@@ -87,8 +93,9 @@ public class Bidding {
 		this.work = work;
 		this.contractorList = contractorList;
 		this.labour = labour;
-		this.status = status;
 	}
+
+
 
 	public Bidding(int biddingId, String description, @NotNull double amount, @NotNull LocalDate fromDate,
 			@NotNull LocalDate toDate, Status status) {
@@ -97,19 +104,20 @@ public class Bidding {
 		this.description = description;
 		this.amount = amount;
 		this.fromDate = fromDate;
-		this.status = status;
 		this.toDate = toDate;
 	}
 
-	public Bidding(String description, @NotNull double amount, @NotNull LocalDate fromDate, @NotNull LocalDate toDate,
-			Status status) {
+
+
+	public Bidding(String description, @NotNull double amount, @NotNull LocalDate fromDate, @NotNull LocalDate toDate, Status status) {
 		super();
 		this.description = description;
 		this.amount = amount;
 		this.fromDate = fromDate;
 		this.toDate = toDate;
-		this.status = status;
 	}
+
+
 
 	public int getBiddingId() {
 		return biddingId;
@@ -146,14 +154,18 @@ public class Bidding {
 	public LocalDate getToDate() {
 		return toDate;
 	}
-
+	
 	public List<Contractor> getContractorList() {
 		return contractorList;
 	}
 
+
+
 	public void setContractorList(List<Contractor> contractorList) {
 		this.contractorList = contractorList;
 	}
+
+
 
 	public void setToDate(LocalDate toDate) {
 		this.toDate = toDate;
@@ -175,6 +187,8 @@ public class Bidding {
 		this.work = work;
 	}
 
+
+
 	public Labour getLabour() {
 		return labour;
 	}
@@ -183,6 +197,8 @@ public class Bidding {
 		this.labour = labour;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Bidding [biddingId=" + biddingId + ", description=" + description + ", amount=" + amount + ", fromDate="
@@ -190,4 +206,7 @@ public class Bidding {
 				+ ", contractorList=" + contractorList + ", labour=" + labour + "]";
 	}
 
+	
+	
+	
 }

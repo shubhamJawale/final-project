@@ -87,7 +87,6 @@ public class Work {
 		this.toDate = toDate;
 		this.pinCode=pinCode;
 		this.expectedAmount = expectedAmount;
-		this.workType = workType;
 		this.status = status;
 	}
 
@@ -205,13 +204,9 @@ public class Work {
 	@Override
 	public String toString() {
 		return "Work [WorkId=" + WorkId + ", title=" + title + ", description=" + description + ", fromDate=" + fromDate
-				+ ", toDate=" + toDate + ", pinCode=" + pinCode + ", expectedAmount=" + expectedAmount + ", workType="
-				+ workType + ", status=" + status + ", user=" + user + ", assignedWork=" + assignedWork
-				+ ", biddingList=" + biddingList + "]";
+				+ ", toDate=" + toDate + ", pinCode=" + pinCode + ", expectedAmount=" + expectedAmount + ", status="
+				+ status + ", user=" + user + ", assignedWork=" + assignedWork + ", biddingList=" + biddingList + "]";
 	}
-
-
-
 
 
 

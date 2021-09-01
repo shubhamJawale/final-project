@@ -37,8 +37,6 @@ public class Work {
 	@NotNull
 	private double expectedAmount;
 	@NotNull
-	private WorkType workType;
-	@NotNull
 	private Status status;
 	// foreign key
 	
@@ -64,41 +62,27 @@ public class Work {
 
 
 	public Work(int workId, String title, String description, LocalDate fromDate, LocalDate toDate,
-			String pinCode	,double expectedAmount, WorkType workType,Status status) {
+			double expectedAmount, Status status) {
 		super();
 		WorkId = workId;
 		this.title = title;
 		this.description = description;
 		this.fromDate = fromDate;
 		this.toDate = toDate;
-		this.pinCode=pinCode;
 		this.expectedAmount = expectedAmount;
-		this.workType = workType;
 		this.status = status;
 	}
 
 
-	public Work(String title, String description, LocalDate fromDate, LocalDate toDate,String pinCode, double expectedAmount,
-			WorkType workType, Status status) {
+	public Work(String title, String description, LocalDate fromDate, LocalDate toDate, double expectedAmount,
+			Status status) {
 		super();
 		this.title = title;
 		this.description = description;
 		this.fromDate = fromDate;
 		this.toDate = toDate;
-		this.pinCode=pinCode;
 		this.expectedAmount = expectedAmount;
-		this.workType = workType;
 		this.status = status;
-	}
-
-
-	public String getPinCode() {
-		return pinCode;
-	}
-
-
-	public void setPinCode(String pinCode) {
-		this.pinCode = pinCode;
 	}
 
 
@@ -205,15 +189,9 @@ public class Work {
 	@Override
 	public String toString() {
 		return "Work [WorkId=" + WorkId + ", title=" + title + ", description=" + description + ", fromDate=" + fromDate
-				+ ", toDate=" + toDate + ", pinCode=" + pinCode + ", expectedAmount=" + expectedAmount + ", workType="
-				+ workType + ", status=" + status + ", user=" + user + ", assignedWork=" + assignedWork
-				+ ", biddingList=" + biddingList + "]";
+				+ ", toDate=" + toDate + ", expectedAmount=" + expectedAmount + ", status=" + status + ", user=" + user
+				+ ", assignedWork=" + assignedWork + ", biddingList=" + biddingList + "]";
 	}
-
-
-
-
-
 
 	
 	
