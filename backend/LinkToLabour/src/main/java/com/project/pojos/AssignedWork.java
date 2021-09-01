@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 public class AssignedWork {
 	@Id
@@ -25,12 +29,88 @@ public class AssignedWork {
 	
 	//private User user;
 	
-	@OneToOne(/*mappedBy = "AssignedWork",*/fetch = FetchType.LAZY, cascade =  { CascadeType.DETACH, CascadeType.MERGE,
+	@OneToOne(fetch = FetchType.LAZY, cascade =  { CascadeType.DETACH, CascadeType.MERGE,
 			CascadeType.PERSIST, CascadeType.REFRESH })
-	//@JoinColumn(name="BiddingId")
+
 	private Bidding bidding;
 	
 	
-	private String status;
+	private Status status;
+
+
+	public AssignedWork() {
+		super();
+		
+	}
+
+
+	public AssignedWork(int assignedWorkId, Work work, Bidding bidding, Status status) {
+		super();
+		this.assignedWorkId = assignedWorkId;
+		this.work = work;
+		this.bidding = bidding;
+		this.status = status;
+	}
+
+
+	public AssignedWork(Work work, Bidding bidding, Status status) {
+		super();
+		this.work = work;
+		this.bidding = bidding;
+		this.status = status;
+	}
+
+
+	public int getAssignedWorkId() {
+		return assignedWorkId;
+	}
+
+
+	public void setAssignedWorkId(int assignedWorkId) {
+		this.assignedWorkId = assignedWorkId;
+	}
+
+
+	public Work getWork() {
+		return work;
+	}
+
+
+	public void setWork(Work work) {
+		this.work = work;
+	}
+
+
+	public Bidding getBidding() {
+		return bidding;
+	}
+
+
+	public void setBidding(Bidding bidding) {
+		this.bidding = bidding;
+	}
+
+
+	public Status getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+
+	@Override
+	public String toString() {
+		return "AssignedWork [assignedWorkId=" + assignedWorkId + ", work=" + work + ", bidding=" + bidding
+				+ ", status=" + status + "]";
+	}
+
+
+	
+	
+	
+	
 
 }

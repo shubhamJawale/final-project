@@ -1,0 +1,43 @@
+package com.project.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.project.pojos.Work;
+@Service
+public class WorkServiceImpl implements WorkService {
+@Autowired
+
+	@Override
+	public void addwork(Work work) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<Work> getAllWork() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateWork(Work work) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<Work> getworkByUserID(int userid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteWork(Work work) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,5 +1,6 @@
 package com.project.pojos;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+
+
+
 
 @Entity
 public class Work {
@@ -21,11 +26,17 @@ public class Work {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int WorkId;
 	private String title;
+	@NotNull
 	private String description;
-	private Date startingDate;
-	private int expectedDuration;
+	@NotNull
+	private LocalDate fromDate;
+	@NotNull
+	private LocalDate toDate;
+	
+	@NotNull
 	private double expectedAmount;
-	private String status;
+	@NotNull
+	private Status status;
 	// foreign key
 	
 	// user 
@@ -42,4 +53,145 @@ public class Work {
 	@OneToMany(mappedBy = "work", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Bidding> biddingList;
 
+
+	public Work() {
+		super();
+		
+	}
+
+
+	public Work(int workId, String title, String description, LocalDate fromDate, LocalDate toDate,
+			double expectedAmount, Status status) {
+		super();
+		WorkId = workId;
+		this.title = title;
+		this.description = description;
+		this.fromDate = fromDate;
+		this.toDate = toDate;
+		this.expectedAmount = expectedAmount;
+		this.status = status;
+	}
+
+
+	public Work(String title, String description, LocalDate fromDate, LocalDate toDate, double expectedAmount,
+			Status status) {
+		super();
+		this.title = title;
+		this.description = description;
+		this.fromDate = fromDate;
+		this.toDate = toDate;
+		this.expectedAmount = expectedAmount;
+		this.status = status;
+	}
+
+
+	public int getWorkId() {
+		return WorkId;
+	}
+
+
+	public void setWorkId(int workId) {
+		WorkId = workId;
+	}
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+	public LocalDate getFromDate() {
+		return fromDate;
+	}
+
+
+	public void setFromDate(LocalDate fromDate) {
+		this.fromDate = fromDate;
+	}
+
+
+	public LocalDate getToDate() {
+		return toDate;
+	}
+
+
+	public void setToDate(LocalDate toDate) {
+		this.toDate = toDate;
+	}
+
+
+	public double getExpectedAmount() {
+		return expectedAmount;
+	}
+
+
+	public void setExpectedAmount(double expectedAmount) {
+		this.expectedAmount = expectedAmount;
+	}
+
+
+	public Status getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+	public AssignedWork getAssignedWork() {
+		return assignedWork;
+	}
+
+
+	public void setAssignedWork(AssignedWork assignedWork) {
+		this.assignedWork = assignedWork;
+	}
+
+
+	public List<Bidding> getBiddingList() {
+		return biddingList;
+	}
+
+
+	public void setBiddingList(List<Bidding> biddingList) {
+		this.biddingList = biddingList;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Work [WorkId=" + WorkId + ", title=" + title + ", description=" + description + ", fromDate=" + fromDate
+				+ ", toDate=" + toDate + ", expectedAmount=" + expectedAmount + ", status=" + status + ", user=" + user
+				+ ", assignedWork=" + assignedWork + ", biddingList=" + biddingList + "]";
+	}
+
+	
+	
 }

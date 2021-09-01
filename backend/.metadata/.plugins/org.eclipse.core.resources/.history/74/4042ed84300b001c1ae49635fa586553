@@ -1,0 +1,117 @@
+package com.project.pojos;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@Entity
+public class Contractor {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int contractorId;
+	
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "UserId")
+	private User user;
+	
+	@OneToMany(mappedBy = "contractor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Bidding> biddingList;
+	
+	private String LicenceNo;
+	private Date ExpiryDate;
+
+	@OneToMany(mappedBy = "contractor", fetch =  FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH })
+	private List<Labour> labourList;
+
+	@OneToMany(mappedBy = "contractor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+	private List<Review> reviewList;
+
+	public Contractor() {
+		super();
+		
+	}
+	
+
+	public Contractor(int contractorId, User user) {
+		super();
+		this.contractorId = contractorId;
+		this.user = user;
+	}
+
+
+	public int getContractorId() {
+		return contractorId;
+	}
+
+	public void setContractorId(int contractorId) {
+		this.contractorId = contractorId;
+	}
+	@JsonIgnoreProperties
+	public User getUser() {
+		return user;
+	}
+@JsonProperty
+	public void setUser(User user) {
+		this.user = user;
+	}
+@JsonIgnoreProperties
+	public List<Bidding> getBiddingList() {
+		return biddingList;
+	}
+@JsonProperty
+	public void setBiddingList(List<Bidding> biddingList) {
+		this.biddingList = biddingList;
+	}
+
+	public String getLicenceNo() {
+		return LicenceNo;
+	}
+
+	public void setLicenceNo(String licenceNo) {
+		LicenceNo = licenceNo;
+	}
+
+	public Date getExpiryDate() {
+		return ExpiryDate;
+	}
+
+	public void setExpiryDate(Date expiryDate) {
+		ExpiryDate = expiryDate;
+	}
+	@JsonIgnoreProperties
+	public List<Labour> getLabourList() {
+		return labourList;
+	}
+	@JsonProperty
+	public void setLabourList(List<Labour> labourList) {
+		this.labourList = labourList;
+	}
+	@JsonIgnoreProperties
+	public List<Review> getReviewList() {
+		return reviewList;
+	}
+	@JsonProperty
+	public void setReviewList(List<Review> reviewList) {
+		this.reviewList = reviewList;
+	}
+	
+
+}

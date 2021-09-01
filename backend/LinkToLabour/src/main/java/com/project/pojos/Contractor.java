@@ -1,5 +1,6 @@
 package com.project.pojos;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -15,26 +16,27 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Contractor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int contractorId;
-	
-	
+	@NotNull
+	private String LicenceNo;
+	@NotNull
+	private LocalDate ExpiryDate;
+
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "UserId")
 	private User user;
-	
-	@OneToMany(mappedBy = "contractor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Bidding> biddingList;
-	
-	private String LicenceNo;
-	private Date ExpiryDate;
 
-	@OneToMany(mappedBy = "contractor", fetch =  FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH })
+	@ManyToMany(mappedBy = "contractorList", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Bidding> biddingList;
+
+	@OneToMany(mappedBy = "contractor", fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE,
+			CascadeType.PERSIST, CascadeType.REFRESH })
 	private List<Labour> labourList;
 
 	@OneToMany(mappedBy = "contractor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -43,16 +45,35 @@ public class Contractor {
 
 	public Contractor() {
 		super();
-		
-	}
-	
 
-	public Contractor(int contractorId, User user) {
+	}
+
+	public Contractor(int contractorId, @NotNull String licenceNo, @NotNull LocalDate expiryDate, User user) {
 		super();
 		this.contractorId = contractorId;
+		LicenceNo = licenceNo;
+		ExpiryDate = expiryDate;
 		this.user = user;
 	}
 
+	public Contractor(@NotNull String licenceNo, @NotNull LocalDate expiryDate, User user) {
+		super();
+		LicenceNo = licenceNo;
+		ExpiryDate = expiryDate;
+		this.user = user;
+	}
+
+	public Contractor(int contractorId, @NotNull String licenceNo, @NotNull LocalDate expiryDate, User user,
+			List<Bidding> biddingList, List<Labour> labourList, List<Review> reviewList) {
+		super();
+		this.contractorId = contractorId;
+		LicenceNo = licenceNo;
+		ExpiryDate = expiryDate;
+		this.user = user;
+		this.biddingList = biddingList;
+		this.labourList = labourList;
+		this.reviewList = reviewList;
+	}
 
 	public int getContractorId() {
 		return contractorId;
@@ -60,6 +81,22 @@ public class Contractor {
 
 	public void setContractorId(int contractorId) {
 		this.contractorId = contractorId;
+	}
+
+	public String getLicenceNo() {
+		return LicenceNo;
+	}
+
+	public void setLicenceNo(String licenceNo) {
+		LicenceNo = licenceNo;
+	}
+
+	public LocalDate getExpiryDate() {
+		return ExpiryDate;
+	}
+
+	public void setExpiryDate(LocalDate expiryDate) {
+		ExpiryDate = expiryDate;
 	}
 
 	public User getUser() {
@@ -78,22 +115,6 @@ public class Contractor {
 		this.biddingList = biddingList;
 	}
 
-	public String getLicenceNo() {
-		return LicenceNo;
-	}
-
-	public void setLicenceNo(String licenceNo) {
-		LicenceNo = licenceNo;
-	}
-
-	public Date getExpiryDate() {
-		return ExpiryDate;
-	}
-
-	public void setExpiryDate(Date expiryDate) {
-		ExpiryDate = expiryDate;
-	}
-
 	public List<Labour> getLabourList() {
 		return labourList;
 	}
@@ -109,6 +130,15 @@ public class Contractor {
 	public void setReviewList(List<Review> reviewList) {
 		this.reviewList = reviewList;
 	}
+
+	@Override
+	public String toString() {
+		return "Contractor [contractorId=" + contractorId + ", LicenceNo=" + LicenceNo + ", ExpiryDate=" + ExpiryDate
+				+ ", user=" + user + ", biddingList=" + biddingList + ", labourList=" + labourList + ", reviewList="
+				+ reviewList + "]";
+	}
+	
+	
 	
 
 }
