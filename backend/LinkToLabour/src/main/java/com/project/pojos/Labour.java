@@ -37,4 +37,70 @@ public class Labour {
 	
 	@OneToMany(mappedBy = "labour", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Bidding> biddingList;
+
+
+	public Labour() {
+		super();
+			}
+
+	//constructor with two params
+
+	public Labour(int labourId, User user) {
+		super();
+		this.labourId = labourId;
+		this.user = user;
+	}
+
+	//Getter and Setter
+	public int getLabourId() {
+		return labourId;
+	}
+
+	public void setLabourId(int labourId) {
+		this.labourId = labourId;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Contractor getContractor() {
+		return contractor;
+	}
+
+	public void setContractor(Contractor contractor) {
+		this.contractor = contractor;
+	}
+
+	public List<Review> getReviewList() {
+		return reviewList;
+	}
+
+	public void setReviewList(List<Review> reviewList) {
+		this.reviewList = reviewList;
+	}
+
+	public List<Bidding> getBiddingList() {
+		return biddingList;
+	}
+
+	public void setBiddingList(List<Bidding> biddingList) {
+		this.biddingList = biddingList;
+	}
+
+	@Override
+	public String toString() {
+		return "Labour [labourId=" + labourId + ", user=" + user + ", contractor=" + contractor + ", reviewList="
+				+ reviewList + ", biddingList=" + biddingList + "]";
+	}
+	
+	
+	
+	
+	
+	
 }

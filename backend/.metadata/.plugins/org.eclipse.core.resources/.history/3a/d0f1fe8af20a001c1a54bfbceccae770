@@ -1,0 +1,13 @@
+package com.project.service;
+
+import com.project.pojos.Labour;
+
+public class LabourServiceImpl implements LabourService {
+
+	@Override
+	public void addLabour(Labour labour) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

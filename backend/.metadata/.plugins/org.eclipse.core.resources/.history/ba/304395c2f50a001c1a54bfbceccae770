@@ -1,0 +1,12 @@
+package com.project.service;
+
+import com.project.pojos.Contractor;
+
+public class ContractorServiceImpl implements ContractorService {
+
+	@Override
+	public void addContractor(Contractor contractor) {
+	
+	}
+
+}

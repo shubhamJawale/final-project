@@ -27,24 +27,13 @@ import lombok.Setter;
 @NoArgsConstructor
 
 public class User {
-	
-	public User(String userName, String emailId, long mobileNo, String address, int pincode, String password,
-			Role role) {
-		super();
-		this.userName = userName;
-		this.emailId = emailId;
-		this.mobileNo = mobileNo;
-		Address = address;
-		this.pincode = pincode;
-		this.password = password;
-		this.role = role;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
 	private String userName;
+	@Column(unique = true, nullable =false)
 	private String emailId;
+	@Column(unique = true, nullable = false)
 	private long mobileNo;
 	private String Address;
 	private int pincode;
@@ -63,10 +52,111 @@ public class User {
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	
 	private Contractor contractor;
+
 	
+	public User(String userName, String emailId, long mobileNo, String address, int pincode, String password,
+			Role role) {
+		super();
+		this.userName = userName;
+		this.emailId = emailId;
+		this.mobileNo = mobileNo;
+		Address = address;
+		this.pincode = pincode;
+		this.password = password;
+		this.role = role;
+	}
+
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public long getMobileNo() {
+		return mobileNo;
+	}
+
+	public void setMobileNo(long mobileNo) {
+		this.mobileNo = mobileNo;
+	}
+
+	public String getAddress() {
+		return Address;
+	}
+
+	public void setAddress(String address) {
+		Address = address;
+	}
+
+	public int getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(int pincode) {
+		this.pincode = pincode;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public Labour getLabour() {
+		return labour;
+	}
+
+	public void setLabour(Labour labour) {
+		this.labour = labour;
+	}
+
+	public Contractor getContractor() {
+		return contractor;
+	}
+
+	public void setContractor(Contractor contractor) {
+		this.contractor = contractor;
+	}
+
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", userName=" + userName + ", emailId=" + emailId + ", mobileNo=" + mobileNo
+				+ ", Address=" + Address + ", pincode=" + pincode + ", password=" + password + ", role=" + role
+				+ ", labour=" + labour + ", workslist=" + workslist + ", contractor=" + contractor + "]";
+	}
+
+		
 	
-//	private Labour labour;
-//	//contractor id
-//	//labour id
+
 
 }
