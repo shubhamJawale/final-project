@@ -1,0 +1,11 @@
+package com.project.pojos;
+
+public class Work {
+
+	private int WorkId;
+	private String title;
+	private String description;
+	private Date startingDate;
+	private int expectedDuration;
+	
+}

@@ -1,0 +1,15 @@
+package com.project.pojos;
+
+public class Bidding {
+
+			private int biddingId;
+			
+			//foriegn key
+			private int workId;
+			private double amount;
+			private int duration;
+			//foreign key
+			private int contractorid;
+			private int labourid;
+	
+}

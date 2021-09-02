@@ -1,0 +1,25 @@
+package com.project.pojos;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+public class Labour {
+	private int labourId;
+	private User user;
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH })
+	@JoinColumn(name="ContractorId")
+	private Contractor contractor;
+
+	@OneToMany(mappedBy = "Labour", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@Column(nullable = true)
+	private List<Review> reviewList;
+
+}

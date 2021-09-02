@@ -1,0 +1,156 @@
+package com.project.pojos;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+
+public class User {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int userId;
+	private String userName;
+	@Column(unique = true, nullable =false)
+	private String emailId;
+	@Column(unique = true, nullable = false)
+	private long mobileNo;
+	private String Address;
+	private int pincode;
+	private String password;
+	private Role role;
+	
+	
+	@OneToOne(mappedBy = "user" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+	private Labour labour;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	
+	private List<Work> workslist;
+	
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	
+	private Contractor contractor;
+
+	
+	public User(String userName, String emailId, long mobileNo, String address, int pincode, String password,
+			Role role) {
+		super();
+		this.userName = userName;
+		this.emailId = emailId;
+		this.mobileNo = mobileNo;
+		Address = address;
+		this.pincode = pincode;
+		this.password = password;
+		this.role = role;
+	}
+
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public long getMobileNo() {
+		return mobileNo;
+	}
+
+	public void setMobileNo(long mobileNo) {
+		this.mobileNo = mobileNo;
+	}
+
+	public String getAddress() {
+		return Address;
+	}
+
+	public void setAddress(String address) {
+		Address = address;
+	}
+
+	public int getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(int pincode) {
+		this.pincode = pincode;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public Labour getLabour() {
+		return labour;
+	}
+
+	public void setLabour(Labour labour) {
+		this.labour = labour;
+	}
+
+	public Contractor getContractor() {
+		return contractor;
+	}
+
+	public void setContractor(Contractor contractor) {
+		this.contractor = contractor;
+	}
+
+		
+	
+//	private Labour labour;
+//	//contractor id
+//	//labour id
+
+}

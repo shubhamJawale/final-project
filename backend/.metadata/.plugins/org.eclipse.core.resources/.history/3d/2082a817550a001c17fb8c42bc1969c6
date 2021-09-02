@@ -1,0 +1,29 @@
+package com.project.pojos;
+
+import java.util.Date;
+
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+public class Work {
+
+	private int WorkId;
+	private String title;
+	private String description;
+	private Date startingDate;
+	private int expectedDuration;
+	private double expectedAmount;
+
+	// foreign key
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH })
+	@JoinColumn(name="UserId", referencedColumnName = "WorkId")
+	private User user;
+	private String status;
+	
+	private List<Bidding> biddingList;
+
+}

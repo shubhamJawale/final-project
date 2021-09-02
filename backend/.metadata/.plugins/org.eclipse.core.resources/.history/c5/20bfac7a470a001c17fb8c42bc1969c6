@@ -1,0 +1,11 @@
+package com.project.pojos;
+
+public class AssignedWork {
+	private int aWorkId;
+	
+	private Work work;
+	private int userid;
+	private int biddingid;
+	private String status;
+		
+}

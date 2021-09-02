@@ -1,0 +1,23 @@
+package com.project.pojos;
+
+import java.util.Date;
+
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+public class Work {
+
+	private int WorkId;
+	private String title;
+	private String description;
+	private Date startingDate;
+	private int expectedDuration;
+	private double expectedAmount;
+	
+	// foreign key
+	@ManyToOne(fetch = FetchType.LAZY)
+	private User user;
+	private String status;
+	
+}

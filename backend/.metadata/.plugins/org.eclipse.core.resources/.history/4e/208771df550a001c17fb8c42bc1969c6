@@ -1,0 +1,24 @@
+package com.project.pojos;
+
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+public class Bidding {
+
+			private int biddingId;
+			
+			//foriegn key
+			
+			@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+			@JoinColumn(name="WorkId")
+			private Work work;
+			private double amount;
+			private int duration;
+			//foreign key
+			private Contractor contractor;
+			
+			private Labour labour;
+	
+}

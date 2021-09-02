@@ -1,0 +1,18 @@
+package com.project.pojos;
+
+import java.util.Date;
+
+public class Work {
+
+	private int WorkId;
+	private String title;
+	private String description;
+	private Date startingDate;
+	private int expectedDuration;
+	private double expectedAmount;
+	
+	// foreign key
+	private int userId;
+	private String status;
+	
+}

@@ -1,0 +1,20 @@
+package com.project.pojos;
+
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class AssignedWork {
+	@Id
+	@GeneratedValue(strategy = )
+	private int aWorkId;
+	
+	private Work work;
+	private User user;
+	private Bidding bidding;
+	private String status;
+		
+}
