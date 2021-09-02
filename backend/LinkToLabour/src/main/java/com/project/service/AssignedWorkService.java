@@ -18,6 +18,9 @@ public interface AssignedWorkService {
 	public List<AssignedWork> getAllAssignedWork();
 	
 	
+	public List<AssignedWork> getAssignedWorkByUserId(int userId);
+	public AssignedWork getAssignedWorkByWorkId(int WorkId);
+	public List<AssignedWork> getAssignedWorkByContractorsId(int contractorId);
 	/*
 	 * public List<AssignedWork> getAssignedWorkByUserId(User user);
 	 * 

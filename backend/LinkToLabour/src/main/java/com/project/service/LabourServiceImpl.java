@@ -39,4 +39,11 @@ LabourRepo labourRepo;
 		return this.labourRepo.getLabourBypinCode(pincode);
 	}
 
+
+	@Override
+	public Labour getLabourById(int labourId) {
+		
+		return this.labourRepo.getById(labourId);
+	}
+
 }

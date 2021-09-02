@@ -8,6 +8,7 @@ public interface ReviewService {
 	
 	public void addReview(Review review);
 	
-	public List<Review> getReviewById(int userId,int contractorId,int labourId); 
-
+	public List<Review> getReviewsByUserId(int userId);
+	public List<Review> getReviewsByLabourId(int labourId);
+	public List<Review> getReviewsByContractorId(int contractorId);
 }

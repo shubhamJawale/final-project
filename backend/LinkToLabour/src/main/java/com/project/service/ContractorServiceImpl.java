@@ -35,6 +35,14 @@ public class ContractorServiceImpl implements ContractorService {
 		return this.contractorRepo.getContractorBypinCode(pincode);
 	}
 
+	@Override
+	public Contractor getContractorByContractorId(int contractorId) {
+		
+		return this.contractorRepo.getById(contractorId);
+	}
+
+	
+
 	//@Override
 	/*public Contractor getContractorBylabour(Labour labour) {
 	return this.contractorRepo.getContractorBylabour(labour);

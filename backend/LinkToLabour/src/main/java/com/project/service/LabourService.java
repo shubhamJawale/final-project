@@ -14,5 +14,7 @@ public interface LabourService {
 		public List<Labour> getAllLaboursByPincode(String pincode);
 		
 		public void deleteLabour(Labour labour);
+		
+		public Labour getLabourById(int labourId);
 
 }

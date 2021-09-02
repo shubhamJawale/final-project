@@ -21,9 +21,21 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<Review> getReviewById(int userId,int contractorId,int labourId ) {
+	public List<Review> getReviewsByUserId(int userId) {
 		
-		return this.reviewRepo.getReviewById(userId, contractorId, labourId);
+		return this.reviewRepo.getReviewByuserId(userId);
 	}
+
+	@Override
+	public List<Review> getReviewsByLabourId(int labourId) {
+		return this.reviewRepo.getReviewBylabourId(labourId);
+	}
+
+	@Override
+	public List<Review> getReviewsByContractorId(int contractorId) {
+		return this.reviewRepo.getReviewBycontractorId(contractorId);
+	}
+
+	
 
 }

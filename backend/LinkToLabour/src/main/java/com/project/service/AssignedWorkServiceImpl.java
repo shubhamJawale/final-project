@@ -27,6 +27,20 @@ public class AssignedWorkServiceImpl implements AssignedWorkService {
 		
 		return this.assignedWorkRepo.findAll();
 	}
+	@Override
+	public List<AssignedWork> getAssignedWorkByUserId(int userId) {
+		
+		return this.assignedWorkRepo.getAssignedWorkByUserId(userId);
+	}
+	@Override
+	public AssignedWork getAssignedWorkByWorkId(int WorkId) {
+		return this.assignedWorkRepo.getAssignedWorkByWorkId(WorkId);
+	}
+	@Override
+	public List<AssignedWork> getAssignedWorkByContractorsId(int contractorId) {
+		
+		return this.assignedWorkRepo.getAssignedWorkByContractorId(contractorId);
+	}
 
 	/*
 	 * @Override public List<AssignedWork> getAssignedWorkByUserId(User user) {

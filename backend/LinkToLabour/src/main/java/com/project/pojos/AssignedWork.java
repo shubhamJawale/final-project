@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity
 public class AssignedWork {
 	@Id
@@ -65,7 +65,7 @@ public class AssignedWork {
 		return assignedWorkId;
 	}
 
-
+	
 	public void setAssignedWorkId(int assignedWorkId) {
 		this.assignedWorkId = assignedWorkId;
 	}

@@ -18,6 +18,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity
 public class Contractor {
 	@Id
@@ -32,13 +36,13 @@ public class Contractor {
 	@JoinColumn(name = "UserId")
 	private User user;
 
-	@ManyToMany(mappedBy = "contractorList", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "contractor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Bidding> biddingList;
 
 	@OneToMany(mappedBy = "contractor", fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE,
 			CascadeType.PERSIST, CascadeType.REFRESH })
 	private List<Labour> labourList;
-
+	
 	@OneToMany(mappedBy = "contractor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 
 	private List<Review> reviewList;
@@ -99,34 +103,42 @@ public class Contractor {
 		ExpiryDate = expiryDate;
 	}
 
+	@JsonIgnore
 	public User getUser() {
 		return user;
 	}
 
+	@JsonProperty
 	public void setUser(User user) {
 		this.user = user;
 	}
 
+	@JsonIgnore
 	public List<Bidding> getBiddingList() {
 		return biddingList;
 	}
 
+	@JsonProperty
 	public void setBiddingList(List<Bidding> biddingList) {
 		this.biddingList = biddingList;
 	}
 
+	@JsonIgnore
 	public List<Labour> getLabourList() {
 		return labourList;
 	}
 
+	@JsonProperty
 	public void setLabourList(List<Labour> labourList) {
 		this.labourList = labourList;
 	}
 
+	@JsonIgnore
 	public List<Review> getReviewList() {
 		return reviewList;
 	}
 
+	@JsonProperty
 	public void setReviewList(List<Review> reviewList) {
 		this.reviewList = reviewList;
 	}
@@ -137,8 +149,5 @@ public class Contractor {
 				+ ", user=" + user + ", biddingList=" + biddingList + ", labourList=" + labourList + ", reviewList="
 				+ reviewList + "]";
 	}
-	
-	
-	
 
 }

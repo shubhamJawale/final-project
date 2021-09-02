@@ -18,7 +18,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity
 public class Labour {
 	@Id
@@ -40,7 +40,7 @@ public class Labour {
 	private List<Review> reviewList;
 
 	
-	@ManyToMany(mappedBy = "labourList", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "labour", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Bidding> biddingList;
 
 
@@ -74,42 +74,42 @@ public class Labour {
 		this.labourId = labourId;
 	}
 
-
+	@JsonIgnore
 	public User getUser() {
 		return user;
 	}
 
-
+	@JsonProperty
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-
+	@JsonIgnore
 	public Contractor getContractor() {
 		return contractor;
 	}
 
-
+	@JsonProperty
 	public void setContractor(Contractor contractor) {
 		this.contractor = contractor;
 	}
 
-
+	@JsonIgnore
 	public List<Review> getReviewList() {
 		return reviewList;
 	}
 
-
+	@JsonProperty
 	public void setReviewList(List<Review> reviewList) {
 		this.reviewList = reviewList;
 	}
 
-
+	@JsonIgnore
 	public List<Bidding> getBiddingList() {
 		return biddingList;
 	}
 
-
+	@JsonProperty
 	public void setBiddingList(List<Bidding> biddingList) {
 		this.biddingList = biddingList;
 	}

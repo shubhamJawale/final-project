@@ -27,6 +27,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@JsonIgnoreProperties({ "hibernateLazyInitializer" })
 @Entity
 
 public class Bidding {
@@ -54,19 +55,19 @@ public class Bidding {
 
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH }, fetch = FetchType.LAZY)
-	 @JoinColumn(name = "WorkId") 
+
 	private Work work;
 
 	// foreign key
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH })
-	@JoinTable(name = "Contractor_Bidding_List", joinColumns = @JoinColumn(name = "biddingId"), inverseJoinColumns = @JoinColumn(name = "contractorId"))
-	private List<Contractor> contractorList;
+	//@JoinTable(name = "Contractor_Bidding_List", joinColumns = @JoinColumn(name = "biddingId"), inverseJoinColumns = @JoinColumn(name = "contractorId"))
+	private Contractor contractor;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH })
-	@JoinTable(name = "Labour_Bidding_List", joinColumns = @JoinColumn(name = "biddingId"), inverseJoinColumns = @JoinColumn(name = "labourId"))
-	private List<Labour> labourList;
+	//@JoinTable(name = "Labour_Bidding_List", joinColumns = @JoinColumn(name = "biddingId"), inverseJoinColumns = @JoinColumn(name = "labourId"))
+	private Labour labour;
 
 	public Bidding() {
 		super();
@@ -74,7 +75,7 @@ public class Bidding {
 
 	public Bidding(int biddingId, String description, @NotNull double amount, @NotNull LocalDate fromDate,
 			@NotNull LocalDate toDate, Status status, AssignedWork assignedWork, Work work,
-			List<Contractor> contractorList, List<Labour> labourList) {
+			Contractor contractorList, Labour labourList) {
 		super();
 		this.biddingId = biddingId;
 		this.description = description;
@@ -83,8 +84,8 @@ public class Bidding {
 		this.toDate = toDate;
 		this.assignedWork = assignedWork;
 		this.work = work;
-		this.contractorList = contractorList;
-		this.labourList = labourList;
+		this.contractor = contractorList;
+		this.labour = labourList;
 		this.status = status;
 	}
 
@@ -145,49 +146,71 @@ public class Bidding {
 		return toDate;
 	}
 
-	public List<Contractor> getContractorList() {
-		return contractorList;
+	@JsonIgnore
+	public Contractor getContractorList() {
+		return contractor;
 	}
 
-	public void setContractorList(List<Contractor> contractorList) {
-		this.contractorList = contractorList;
+	@JsonProperty
+	public void setContractorList(Contractor contractorList) {
+		this.contractor = contractorList;
 	}
 
 	public void setToDate(LocalDate toDate) {
 		this.toDate = toDate;
 	}
 
+	@JsonIgnore
 	public AssignedWork getAssignedWork() {
 		return assignedWork;
 	}
 
+	@JsonProperty
 	public void setAssignedWork(AssignedWork assignedWork) {
 		this.assignedWork = assignedWork;
 	}
 
+	@JsonIgnore
 	public Work getWork() {
 		return work;
 	}
 
+	@JsonProperty
 	public void setWork(Work work) {
 		this.work = work;
 	}
 
-	public List<Labour> getLabour() {
-		return labourList;
+	@JsonIgnore
+	public Labour getLabour() {
+		return labour;
 	}
 
-	public void setLabour(List<Labour> labourList) {
-		this.labourList = labourList;
+	@JsonProperty
+	public void setLabour(Labour labourList) {
+		this.labour = labourList;
+	}
+	
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	@JsonIgnore
+	public Contractor getContractor() {
+		return contractor;
+	}
+	@JsonProperty
+	public void setContractor(Contractor contractor) {
+		this.contractor = contractor;
 	}
 
 	@Override
 	public String toString() {
 		return "Bidding [biddingId=" + biddingId + ", description=" + description + ", amount=" + amount + ", fromDate="
 				+ fromDate + ", toDate=" + toDate + ", status=" + status + ", assignedWork=" + assignedWork + ", work="
-				+ work + ", contractorList=" + contractorList + ", labourList=" + labourList + "]";
+				+ work + ", contractorList=" + contractor + ", labourList=" + labour + "]";
 	}
-
-
 
 }

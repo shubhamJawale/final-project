@@ -8,11 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.project.dao.UserRepo;
 import com.project.dao.WorkRepo;
+import com.project.pojos.Status;
 import com.project.pojos.User;
 import com.project.pojos.Work;
 import com.project.pojos.WorkType;
 
-import ch.qos.logback.core.status.Status;
+
 
 @Service
 public class WorkServiceImpl implements WorkService {
@@ -46,9 +47,9 @@ public class WorkServiceImpl implements WorkService {
 	}
 
 	@Override
-	public List<Work> getAllWorkByWorkType(LocalDate date, String pincode, WorkType workType) {
+	public List<Work> getAllWorkByWorkType(LocalDate date, String pincode, WorkType workType, Status status) {
 		
-		return this.workRepo.getAllWorkByWorkType(date, pincode, workType);
+		return this.workRepo.getAllWorkByWorkType(date, pincode, workType,status);
 	}
 
 	@Override
@@ -61,6 +62,18 @@ public class WorkServiceImpl implements WorkService {
 	public List<Work> getAllWorkByExceeding(LocalDate date, String pincode) {
 		
 		return this.workRepo.getAllWorkByExceedingDate(date, pincode);
+	}
+
+	@Override
+	public Work getWorkByWorkId(int workId) {
+		
+		return this.workRepo.getById(workId);
+	}
+
+	@Override
+	public List<Work> getWorkByPincode(String pincode) {
+		
+		return this.workRepo.getWorkByPincode(pincode);
 	}
 
 }

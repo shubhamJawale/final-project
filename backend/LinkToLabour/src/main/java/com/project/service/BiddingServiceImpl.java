@@ -48,6 +48,12 @@ public class BiddingServiceImpl implements BiddingService {
 		
 		 this.biddingRepo.updateBiddingStatus(biddingId);
 	}
+
+	@Override
+	public Bidding getBiddingById(int biddingId) {
+		
+		return this.biddingRepo.getById(biddingId);
+	}
 	
 	
 

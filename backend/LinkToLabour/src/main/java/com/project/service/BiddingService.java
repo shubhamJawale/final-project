@@ -15,5 +15,7 @@ public interface BiddingService {
 	public void deleteBidding(int biddingId);
 	
 	public void updateBidStatus(int biddingId);
+	
+	public Bidding getBiddingById(int biddingId);
 
 }

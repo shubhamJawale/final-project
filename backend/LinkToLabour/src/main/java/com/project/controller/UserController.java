@@ -19,13 +19,16 @@ import com.project.pojos.AssignedWork;
 import com.project.pojos.Bidding;
 import com.project.pojos.Contractor;
 import com.project.pojos.Labour;
+import com.project.pojos.Review;
 import com.project.pojos.Role;
+import com.project.pojos.Status;
 import com.project.pojos.User;
 import com.project.pojos.Work;
 import com.project.service.AssignedWorkService;
 import com.project.service.BiddingService;
 import com.project.service.ContractorService;
 import com.project.service.LabourService;
+import com.project.service.ReviewService;
 import com.project.service.UserService;
 import com.project.service.WorkService;
 
@@ -45,6 +48,8 @@ public class UserController {
 	AssignedWorkService AssignedWorkService;
 	@Autowired
 	BiddingService biddingService;
+	@Autowired
+	ReviewService reviewService;
 
 	@PostMapping(path = "/register", consumes = "application/json")
 	public ResponseEntity<HttpStatus> registerUser(@RequestBody User user) {
@@ -90,62 +95,145 @@ public class UserController {
 	public List<Contractor> getAllcContractorByPincode(@PathVariable String pincode) {
 		return this.contractorService.getAllcContractorByPincode(pincode);
 	}
-	
-	//to get all Contractor dor pincode
+
+	// to get all Contractor dor pincode
 	@GetMapping("/getlabourbypincode/{pincode}")
-	public List<Labour> getAllLabourByPIincode(@PathVariable String pincode)
-	{
+	public List<Labour> getAllLabourByPIincode(@PathVariable String pincode) {
 		return this.labourService.getAllLaboursByPincode(pincode);
 	}
-	
-	//update profile
+
+	// update profile
 	@PostMapping("/updateuserprofile")
-	public String UpdateUserProfile (@RequestBody User user) 
-	{
-		 this.userService.addUser(user);
-		 return "Updated Succefully";
+	public String UpdateUserProfile(@RequestBody User user) {
+		this.userService.addUser(user);
+		return "Updated Succefully";
 	}
-	
-	
-	//user profiledeletion
+
+	// user profiledeletion
 	@DeleteMapping("/deleteuser/{userid}")
-	public String deleteUser(@PathVariable int userid) 
-	{
+	public String deleteUser(@PathVariable int userid) {
 		this.userService.deleteUser(userid);
 		return "Deleted Succefully";
 	}
-	
-	
-	//AddWork by UserId
+
+	// AddWork by UserId
 	@PostMapping("/addworkbyuser/{userId}")
-	public String addWorkByUserId(@RequestBody Work work, @PathVariable int userId)
-	{
-		User user =	this.userService.getUserById(userId);
+	public String addWorkByUserId(@RequestBody Work work, @PathVariable int userId) {
+		User user = this.userService.getUserById(userId);
 		work.setUser(user);
 		this.workService.addwork(work);
-		
+
 		return "Added Succesfully";
 	}
-	
+
+	// get bidding by work id
 	@GetMapping("/getbiddingsbyworkId/{workId}")
-	public List<Bidding> getAllBiddingListForWorkId(@PathVariable int workId)
-	{
+	public List<Bidding> getAllBiddingListForWorkId(@PathVariable int workId) {
 		return this.biddingService.getAllbyWorkId(workId);
 	}
+
 	
+	// to add and update Assigned Work
+	@GetMapping("/addtoassignedwork/{biddingid}")
+	public String addassignedWork(@RequestBody Work work, @PathVariable int biddingid) {
+
+		this.biddingService.updateBidStatus(biddingid);
+		Bidding bidding = this.biddingService.getBiddingById(biddingid);
+		
+		AssignedWork assignedWork = new AssignedWork();
+		
+		assignedWork.setBidding(bidding);
+		assignedWork.setWork(work);
+		assignedWork.setStatus(Status.ONGOING);
+		return "Assigned Work Added";
+		
+	}
 	
-	@GetMapping("/get")
-	public List<AssignedWork> dummymethod()
+	//Get allAssigned Work
+	@GetMapping("/getallAssignedWork")
+	public List<AssignedWork> get()
 	{
 		return this.AssignedWorkService.getAllAssignedWork();
 	}
+
+	//get assigned work with userID
+	@GetMapping("/getassignedworkbyuserid/{userId}")
+	public List<AssignedWork> getAssignedWorkByUserId(@PathVariable int userId)
+	{
+		
+		
+		return this.AssignedWorkService.getAssignedWorkByUserId(userId);
+	}
 	
-	/*
-	 * @PostMapping("/assignwork") public String AddToAssignedWork(@RequestBody
-	 * AssignedWork)
-	 */                    
+	
+	
+	//get assigned work with work id
+	@GetMapping("/getassignedworkbyworkid/{workId}")
+	public AssignedWork getAssignedWorkByWorkId(@PathVariable int workId) 
+	{
+		return this.AssignedWorkService.getAssignedWorkByWorkId(workId);
+	}
+	
+	
+	//add review for labour
+	@PostMapping("/addreviewforlabour/{userId}/{labourId}")
+	public String addReviewlabour(@RequestBody Review review, @PathVariable int userId, @PathVariable int labourId)
+	{
+		User user = this.userService.getUserById(userId);
+		Labour labour  =this.labourService.getLabourById(labourId);
+		review.setUser(user);
+		review.setLabour(labour);
+	
+		this.reviewService.addReview(review);
+		return "Review Added Successfully";
+	}
+	
+	//add review for contrctor
+	@PostMapping("/addreviewforcontractor/{userId}/{contractorId}")
+	public String addReviewcontractor(@RequestBody Review review, @PathVariable int userId, @PathVariable int contractorId)
+	{
+		User user = this.userService.getUserById(userId);
+		Contractor contractor  =this.contractorService.getContractorByContractorId(contractorId);
+		review.setUser(user);
+		review.setContractor(contractor);
+	
+		this.reviewService.addReview(review);
+		return "Review Added Successfully";
+	}
+	
+	//get all reviews of user
+	@GetMapping("/getreviewbyuserid/{userid}")
+	public List<Review> getAllReviewByUserId(@PathVariable int userid)
+	{
+		
+		return this.reviewService.getReviewsByUserId(userid);
+	}
+	
+	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ * @PostMapping("/assignwork") public String AddToAssignedWork(@RequestBody
+ * AssignedWork)
+ */
 
 //demo trial code
 /*

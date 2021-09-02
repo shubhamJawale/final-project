@@ -14,6 +14,9 @@ public interface ContractorService {
 	public List<Contractor> getAllcContractorByPincode(String pincode);
 	
 	public void deleteContractor(Contractor contractor);
+	
+	public Contractor getContractorByContractorId(int contractorId);
+	
 
 	/* public Contractor getContractorBylabour(Labour labour); */
 }

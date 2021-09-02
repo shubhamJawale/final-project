@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity
 public class Review {
 
@@ -151,42 +151,42 @@ public class Review {
 
 
 
-
+	@JsonIgnore
 	public Contractor getContractor() {
 		return contractor;
 	}
 
 
 
-
+	@JsonProperty
 	public void setContractor(Contractor contractor) {
 		this.contractor = contractor;
 	}
 
 
 
-
+	@JsonIgnore
 	public Labour getLabour() {
 		return labour;
 	}
 
 
 
-
+	@JsonProperty
 	public void setLabour(Labour labour) {
 		this.labour = labour;
 	}
 
 
 
-
+	@JsonIgnore
 	public User getUser() {
 		return user;
 	}
 
 
 
-
+	@JsonProperty
 	public void setUser(User user) {
 		this.user = user;
 	}
