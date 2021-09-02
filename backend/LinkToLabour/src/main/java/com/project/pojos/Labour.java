@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -39,7 +40,7 @@ public class Labour {
 	private List<Review> reviewList;
 
 	
-	@OneToMany(mappedBy = "labour", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "labourList", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Bidding> biddingList;
 
 

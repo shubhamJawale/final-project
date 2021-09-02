@@ -20,9 +20,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void deleteUser(User user) {
+	public void deleteUser(int userId) {
+		User user = this.userRepo.getById(userId);
+		System.out.print(user);
 		this.userRepo.delete(user);
 		
+	}
+
+	@Override
+	public User getUserById(int userId) {
+		
+		return this.userRepo.getById(userId);
 	}
 
 }

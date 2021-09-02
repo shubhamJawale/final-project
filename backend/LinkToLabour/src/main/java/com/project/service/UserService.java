@@ -7,7 +7,8 @@ import com.project.pojos.User;
 public interface UserService {
 
 		public void addUser(User user);
+		public User getUserById(int userId);
 	
-		public void deleteUser(User user);
+		public void deleteUser(int  userId);
 	
 }

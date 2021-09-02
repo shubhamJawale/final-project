@@ -69,7 +69,7 @@ public class User {
 		this.userName = userName;
 		this.emailId = emailId;
 		this.mobileNo = mobileNo;
-		Address = address;
+		this.Address = address;
 		this.pincode = pincode;
 		this.password = password;
 		this.role = role;
@@ -87,7 +87,7 @@ public class User {
 		this.userName = userName;
 		this.emailId = emailId;
 		this.mobileNo = mobileNo;
-		Address = address;
+		this.Address = address;
 		this.pincode = pincode;
 		this.password = password;
 		this.role = role;
@@ -101,7 +101,7 @@ public class User {
 		this.userName = userName;
 		this.emailId = emailId;
 		this.mobileNo = mobileNo;
-		Address = address;
+		this.Address = address;
 		this.pincode = pincode;
 		this.password = password;
 		this.role = role;

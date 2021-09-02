@@ -27,8 +27,8 @@ public class BiddingServiceImpl implements BiddingService {
 
 	@Override
 	public List<Bidding> getAllbyWorkId(int workId) {
-		Work work=this.workRepo.getById(workId);
-		return this.biddingRepo.getAllbyWorkId(work);
+		
+		return this.biddingRepo.getAllbyWorkId(workId);
 	}
 
 	@Override

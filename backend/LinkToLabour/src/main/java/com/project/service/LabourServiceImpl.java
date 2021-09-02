@@ -33,4 +33,10 @@ LabourRepo labourRepo;
 		
 	}
 
+
+	@Override
+	public List<Labour> getAllLaboursByPincode(String pincode) {
+		return this.labourRepo.getLabourBypinCode(pincode);
+	}
+
 }

@@ -54,7 +54,7 @@ public class Bidding {
 
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH }, fetch = FetchType.LAZY)
-	@JoinColumn(name = "WorkId")
+	 @JoinColumn(name = "WorkId") 
 	private Work work;
 
 	// foreign key
@@ -63,10 +63,10 @@ public class Bidding {
 	@JoinTable(name = "Contractor_Bidding_List", joinColumns = @JoinColumn(name = "biddingId"), inverseJoinColumns = @JoinColumn(name = "contractorId"))
 	private List<Contractor> contractorList;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH })
-	@JoinColumn(name = "LabourId")
-	private Labour labour;
+	@JoinTable(name = "Labour_Bidding_List", joinColumns = @JoinColumn(name = "biddingId"), inverseJoinColumns = @JoinColumn(name = "labourId"))
+	private List<Labour> labourList;
 
 	public Bidding() {
 		super();
@@ -74,7 +74,7 @@ public class Bidding {
 
 	public Bidding(int biddingId, String description, @NotNull double amount, @NotNull LocalDate fromDate,
 			@NotNull LocalDate toDate, Status status, AssignedWork assignedWork, Work work,
-			List<Contractor> contractorList, Labour labour) {
+			List<Contractor> contractorList, List<Labour> labourList) {
 		super();
 		this.biddingId = biddingId;
 		this.description = description;
@@ -84,7 +84,7 @@ public class Bidding {
 		this.assignedWork = assignedWork;
 		this.work = work;
 		this.contractorList = contractorList;
-		this.labour = labour;
+		this.labourList = labourList;
 		this.status = status;
 	}
 
@@ -173,19 +173,21 @@ public class Bidding {
 		this.work = work;
 	}
 
-	public Labour getLabour() {
-		return labour;
+	public List<Labour> getLabour() {
+		return labourList;
 	}
 
-	public void setLabour(Labour labour) {
-		this.labour = labour;
+	public void setLabour(List<Labour> labourList) {
+		this.labourList = labourList;
 	}
 
 	@Override
 	public String toString() {
 		return "Bidding [biddingId=" + biddingId + ", description=" + description + ", amount=" + amount + ", fromDate="
-				+ fromDate + ", toDate=" + toDate + ", assignedWork=" + assignedWork + ", work=" + work
-				+ ", contractorList=" + contractorList + ", labour=" + labour + "]";
+				+ fromDate + ", toDate=" + toDate + ", status=" + status + ", assignedWork=" + assignedWork + ", work="
+				+ work + ", contractorList=" + contractorList + ", labourList=" + labourList + "]";
 	}
+
+
 
 }

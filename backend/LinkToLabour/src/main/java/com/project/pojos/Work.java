@@ -178,6 +178,17 @@ public class Work {
 	public User getUser() {
 		return user;
 	}
+	
+
+	public WorkType getWorkType() {
+		return workType;
+	}
+
+
+	public void setWorkType(WorkType workType) {
+		this.workType = workType;
+	}
+
 
 	@JsonProperty
 	public void setUser(User user) {

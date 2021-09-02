@@ -1,5 +1,7 @@
 package com.project.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,18 @@ public class ContractorServiceImpl implements ContractorService {
 	@Override
 	public void deleteContractor(Contractor contractor) {
 	this.contractorRepo.delete(contractor);
+	}
+
+	@Override
+	public List<Contractor> getAllContractor() {
+		
+		return this.contractorRepo.findAll();
+	}
+
+	@Override
+	public List<Contractor> getAllcContractorByPincode(String pincode) {
+		
+		return this.contractorRepo.getContractorBypinCode(pincode);
 	}
 
 	//@Override

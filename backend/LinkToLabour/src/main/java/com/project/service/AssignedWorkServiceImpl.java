@@ -22,6 +22,11 @@ public class AssignedWorkServiceImpl implements AssignedWorkService {
 		this.assignedWorkRepo.save(assignedWork);
 		
 	}
+	@Override
+	public List<AssignedWork> getAllAssignedWork() {
+		
+		return this.assignedWorkRepo.findAll();
+	}
 
 	/*
 	 * @Override public List<AssignedWork> getAssignedWorkByUserId(User user) {

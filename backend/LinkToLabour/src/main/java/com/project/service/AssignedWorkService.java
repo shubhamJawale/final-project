@@ -15,6 +15,9 @@ public interface AssignedWorkService {
 	
 	public void addAssignedWork(AssignedWork assignedWork);
 	
+	public List<AssignedWork> getAllAssignedWork();
+	
+	
 	/*
 	 * public List<AssignedWork> getAssignedWorkByUserId(User user);
 	 * 
