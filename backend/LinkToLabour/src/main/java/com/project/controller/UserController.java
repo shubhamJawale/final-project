@@ -77,17 +77,28 @@ public class UserController {
 	}
 	
 	
+	// demo trial code
+	/*
+	 * @GetMapping("/getwork") public List<Work> getWorkByUser() {
+	 * 
+	 * 
+	 * return this.workService.getAllWork();
+	 * 
+	 * 
+	 * }
+	 */
 	
-	@GetMapping("/getwork")
-	public List<Work> getWorkByUser()
-	{
-		
-		
-	return	this.workService.getAllWork();
-		
 	
-	}
-	
+	/*
+	 * //Demo Method
+	 * 
+	 * @GetMapping("/listwork/{userId}") public List<Work> DemoMethod(@PathVariable
+	 * int userId) {
+	 * 
+	 * return this.workService.getworkByUserID(userId);
+	 * 
+	 * }
+	 */
 	
 	
 }

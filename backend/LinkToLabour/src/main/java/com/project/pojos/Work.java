@@ -16,6 +16,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 
 
@@ -171,32 +174,32 @@ public class Work {
 		this.status = status;
 	}
 
-
+	@JsonIgnore
 	public User getUser() {
 		return user;
 	}
 
-
+	@JsonProperty
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-
+	@JsonIgnore
 	public AssignedWork getAssignedWork() {
 		return assignedWork;
 	}
 
-
+	@JsonProperty
 	public void setAssignedWork(AssignedWork assignedWork) {
 		this.assignedWork = assignedWork;
 	}
 
-
+	@JsonIgnore
 	public List<Bidding> getBiddingList() {
 		return biddingList;
 	}
 
-
+	@JsonProperty
 	public void setBiddingList(List<Bidding> biddingList) {
 		this.biddingList = biddingList;
 	}

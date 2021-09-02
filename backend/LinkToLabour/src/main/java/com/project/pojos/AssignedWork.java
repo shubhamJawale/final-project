@@ -70,22 +70,22 @@ public class AssignedWork {
 		this.assignedWorkId = assignedWorkId;
 	}
 
-
+	@JsonIgnore
 	public Work getWork() {
 		return work;
 	}
 
-
+	@JsonProperty
 	public void setWork(Work work) {
 		this.work = work;
 	}
 
-
+	@JsonIgnore
 	public Bidding getBidding() {
 		return bidding;
 	}
 
-
+	@JsonProperty
 	public void setBidding(Bidding bidding) {
 		this.bidding = bidding;
 	}

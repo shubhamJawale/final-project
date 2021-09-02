@@ -32,7 +32,7 @@ public interface WorkRepo extends JpaRepository<Work, Integer>
 	@Query("select t from Work t where t.status =?1")
 	public List<Work> getAllWorkByStatus(Status status);
 	
-	// TODO mapping controoller priority high
+	///
 	@Query("select t from Work t where t.user.userId =?1")
 	public List<Work> getWorkByUser(int userid);
 
