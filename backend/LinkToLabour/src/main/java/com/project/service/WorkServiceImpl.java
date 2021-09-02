@@ -1,5 +1,6 @@
 package com.project.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,9 @@ import com.project.dao.UserRepo;
 import com.project.dao.WorkRepo;
 import com.project.pojos.User;
 import com.project.pojos.Work;
+import com.project.pojos.WorkType;
+
+import ch.qos.logback.core.status.Status;
 
 @Service
 public class WorkServiceImpl implements WorkService {
@@ -39,6 +43,24 @@ public class WorkServiceImpl implements WorkService {
 	public void deleteWork(Work work) {
 		this.workRepo.delete(work);
 
+	}
+
+	@Override
+	public List<Work> getAllWorkByWorkType(LocalDate date, String pincode, WorkType workType) {
+		
+		return this.workRepo.getAllWorkByWorkType(date, pincode, workType);
+	}
+
+	@Override
+	public List<Work> getAllWorkByStatus(Status status) {
+		
+		return this.workRepo.getAllWorkByStatus(status);
+	}
+
+	@Override
+	public List<Work> getAllWorkByExceeding(LocalDate date, String pincode) {
+		
+		return this.workRepo.getAllWorkByExceedingDate(date, pincode);
 	}
 
 }

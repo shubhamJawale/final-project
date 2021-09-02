@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.dao.ContractorRepo;
 import com.project.pojos.Contractor;
+import com.project.pojos.Labour;
 @Service
 public class ContractorServiceImpl implements ContractorService {
 	@Autowired
@@ -14,5 +15,18 @@ public class ContractorServiceImpl implements ContractorService {
 	public void addContractor(Contractor contractor) {
 	this.contractorRepo.save(contractor);
 	}
+	
+	@Override
+	public void deleteContractor(Contractor contractor) {
+	this.contractorRepo.delete(contractor);
+	}
 
-}
+	//@Override
+	/*public Contractor getContractorBylabour(Labour labour) {
+	return this.contractorRepo.getContractorBylabour(labour);
+	}*/
+
+	
+	}
+
+

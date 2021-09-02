@@ -32,7 +32,7 @@ public class User {
 	private String mobileNo;
 	private String Address;
 	@NotNull
-	private int pincode;
+	private String pincode;
 	@NotNull
 	private String password;
 	@NotNull
@@ -59,7 +59,7 @@ public class User {
 
 
 
-	public User(int userId, String userName, String emailId, String mobileNo, String address, int pincode,
+	public User(int userId, String userName, String emailId, String mobileNo, String address, String pincode,
 			String password, Role role, Labour labour, List<Work> workslist, Contractor contractor) {
 		super();
 		this.userId = userId;
@@ -77,7 +77,7 @@ public class User {
 
 
 
-	public User(int userId, String userName, String emailId, String mobileNo, String address, int pincode,
+	public User(int userId, String userName, String emailId, String mobileNo, String address, String pincode,
 			String password, Role role) {
 		super();
 		this.userId = userId;
@@ -92,7 +92,7 @@ public class User {
 
 
 
-	public User(String userName, String emailId, String mobileNo, String address, int pincode, String password,
+	public User(String userName, String emailId, String mobileNo, String address, String pincode, String password,
 			Role role) {
 		super();
 		this.userName = userName;
@@ -167,13 +167,13 @@ public class User {
 
 
 
-	public int getPincode() {
+	public String getPincode() {
 		return pincode;
 	}
 
 
 
-	public void setPincode(int pincode) {
+	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
 
