@@ -53,9 +53,8 @@ public class Bidding {
 
 	private AssignedWork assignedWork;
 
-	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH }, fetch = FetchType.LAZY)
-
+	@ManyToOne(cascade = CascadeType.ALL)
+	//@JoinColumn(name = "workId")
 	private Work work;
 
 	// foreign key
@@ -170,11 +169,11 @@ public class Bidding {
 		this.assignedWork = assignedWork;
 	}
 
+	
 	@JsonIgnore
 	public Work getWork() {
 		return work;
 	}
-
 	@JsonProperty
 	public void setWork(Work work) {
 		this.work = work;

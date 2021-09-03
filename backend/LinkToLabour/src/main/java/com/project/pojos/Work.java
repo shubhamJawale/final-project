@@ -57,7 +57,7 @@ public class Work {
 	private AssignedWork assignedWork;
 	
 	
-	@OneToMany(mappedBy = "work", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy ="work", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Bidding> biddingList;
 
 

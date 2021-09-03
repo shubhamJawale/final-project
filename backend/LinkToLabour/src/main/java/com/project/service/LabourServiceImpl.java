@@ -20,11 +20,11 @@ LabourRepo labourRepo;
 	}
 
 
-	@Override
-	public List<Labour> getLabourBycontractorId(Contractor contractor) {
-		//Contractor contractor=this.contractorRepo.getById(contractor);
-		return this.labourRepo.getLabourBycontractorId(contractor);
-	}
+	/*
+	 * @Override public List<Labour> getLabourBycontractorId(Contractor contractor)
+	 * { //Contractor contractor=this.contractorRepo.getById(contractor); return
+	 * this.labourRepo.getLabourBycontractorId(contractor); }
+	 */
 
 
 	@Override
@@ -44,6 +44,13 @@ LabourRepo labourRepo;
 	public Labour getLabourById(int labourId) {
 		
 		return this.labourRepo.getById(labourId);
+	}
+
+
+	@Override
+	public List<Labour> getLabourByContractorId(int contractorId) {
+		
+		return this.getLabourByContractorId(contractorId);
 	}
 
 }

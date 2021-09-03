@@ -91,14 +91,18 @@ public class UserController {
 	}
 
 	// to get all contractor for pincode
-	@GetMapping("/getcontractorsbypincode/{pincode}")
-	public List<Contractor> getAllcContractorByPincode(@PathVariable String pincode) {
+	@GetMapping("/getcontractorsbypincode/{userId}")
+	public List<Contractor> getAllcContractorByPincode(@PathVariable int userId) {
+		User user = this.userService.getUserById(userId);
+		String pincode = user.getPincode();
 		return this.contractorService.getAllcContractorByPincode(pincode);
 	}
 
 	// to get all Contractor dor pincode
-	@GetMapping("/getlabourbypincode/{pincode}")
-	public List<Labour> getAllLabourByPIincode(@PathVariable String pincode) {
+	@GetMapping("/getlabourbypincode/{userId}")
+	public List<Labour> getAllLabourByPIincode(@PathVariable int userId) {
+		User user = this.userService.getUserById(userId);
+		String pincode = user.getPincode();
 		return this.labourService.getAllLaboursByPincode(pincode);
 	}
 
@@ -121,6 +125,7 @@ public class UserController {
 	public String addWorkByUserId(@RequestBody Work work, @PathVariable int userId) {
 		User user = this.userService.getUserById(userId);
 		work.setUser(user);
+		work.setStatus(Status.PENDING);
 		this.workService.addwork(work);
 
 		return "Added Succesfully";

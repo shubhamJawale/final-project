@@ -23,14 +23,14 @@ public interface WorkRepo extends JpaRepository<Work, Integer>
 	@Query("select t from Work t where t.user = ?1")
 	public	 List<Work> getWorkByUserId(User user);
 	
-	@Query("select t from Work t where t.toDate =?1 and t.pinCode =?2")
+	@Query("select t from Work t where t.toDate >?1 and t.pinCode =?2")
 	public List<Work> getAllWorkByExceedingDate(LocalDate date, String pincode);
 
-	@Query("select t from Work t where  t.toDate =?1 and t.pinCode =?2 and t.workType =?3 and t.status =?4 ")
+	@Query("select t from Work t where  t.toDate >?1 and t.pinCode =?2 and t.workType =?3 and t.status =?4 ")
 	public List<Work> getAllWorkByWorkType(LocalDate date, String pincode, WorkType workType, Status status);
 
 
-	@Query("select t from Work t where t.status =?1")
+	@Query("select t from Work t where t.status >?1")
 	public List<Work> getAllWorkByStatus(Status status);
 	
 	///

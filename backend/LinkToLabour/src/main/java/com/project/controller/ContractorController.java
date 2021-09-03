@@ -77,6 +77,7 @@ public class ContractorController {
 		return "UpdatedSuccessFully!!";
 	}
 
+	// check null license nos
 	@GetMapping("/checkLicenseNull/{contractorId}")
 	public Boolean checkLicenseNo(@PathVariable int contractorId) {
 		Contractor contractor = this.contractorService.getContractorByContractorId(contractorId);
@@ -92,7 +93,6 @@ public class ContractorController {
 	}
 
 	// add labour/Register Lbaour
-
 	@PostMapping("/AddLabourbyContractor/{contractorId}")
 	public String addLabour(@RequestBody User user, @PathVariable int contractorId) {
 		Labour labour = new Labour();
@@ -129,6 +129,7 @@ public class ContractorController {
 	{
 		return this.reviewService.getReviewsByContractorId(contractorId);
 	}
+	
 	//get all work by pincode only
 	@GetMapping("/getworkbypincode/{pincode}")
 	public List<Work> getAllWorkByPincode(@PathVariable String pincode)
@@ -139,9 +140,12 @@ public class ContractorController {
 	//this could be usefull in labour also and user if required
 	//get work by pincode status and worktype
 	//this is the main method to get all works for contractors
-	@GetMapping("/getworkbyworktype/{pincode}")
-	public List<Work> getWorkByWorkType(@PathVariable String pincode)
+	@GetMapping("/getworkbyworktype/{contractorId}")
+	public List<Work> getWorkByWorkType(@PathVariable int contractorId)
 	{
+		Contractor contractor = this.contractorService.getContractorByContractorId(contractorId);
+		User user = contractor.getUser();
+		String pincode = user.getPincode();
 		WorkType type = WorkType.CWORK;
 		LocalDate now = LocalDate.now();
 		Status status = Status.PENDING;

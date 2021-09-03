@@ -25,6 +25,8 @@ public interface AssignedWorkRepo extends JpaRepository<AssignedWork, Integer>
 	
 	@Query("select a from AssignedWork a where a.bidding.contractor.contractorId=?1")
 	public List<AssignedWork> getAssignedWorkByContractorId(int contractorId);
+	@Query("select a from AssignedWork a where a.bidding.labour.labourId=?1")
+	public List<AssignedWork> getAssignedWorkByLabourId(int labourId);
 	
 	/*
 	 * @Query("select a from AssignedWork a where a.user=?1") public

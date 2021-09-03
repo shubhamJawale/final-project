@@ -41,6 +41,11 @@ public class AssignedWorkServiceImpl implements AssignedWorkService {
 		
 		return this.assignedWorkRepo.getAssignedWorkByContractorId(contractorId);
 	}
+	@Override
+	public List<AssignedWork> getAssignedWorkByLabourId(int labourId) {
+		
+		return this.assignedWorkRepo.getAssignedWorkByLabourId(labourId);
+	}
 
 	/*
 	 * @Override public List<AssignedWork> getAssignedWorkByUserId(User user) {

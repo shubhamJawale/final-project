@@ -9,12 +9,13 @@ public interface LabourService {
 	
 		public void addLabour(Labour labour);
 		
-		public List<Labour> getLabourBycontractorId(Contractor contractor);
+		/* public List<Labour> getLabourBycontractorId(Contractor contractor); */
 		
 		public List<Labour> getAllLaboursByPincode(String pincode);
 		
 		public void deleteLabour(Labour labour);
 		
 		public Labour getLabourById(int labourId);
+		public List<Labour> getLabourByContractorId(int contractorId);
 
 }
