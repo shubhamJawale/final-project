@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +20,7 @@ import com.project.pojos.AssignedWork;
 import com.project.pojos.Bidding;
 import com.project.pojos.Contractor;
 import com.project.pojos.Labour;
+import com.project.pojos.Requests;
 import com.project.pojos.Review;
 import com.project.pojos.Status;
 import com.project.pojos.User;
@@ -26,6 +30,7 @@ import com.project.service.AssignedWorkService;
 import com.project.service.BiddingService;
 import com.project.service.ContractorService;
 import com.project.service.LabourService;
+import com.project.service.RequestService;
 import com.project.service.ReviewService;
 import com.project.service.UserService;
 import com.project.service.WorkService;
@@ -48,6 +53,8 @@ public class LabourController {
 	AssignedWorkService assignedWorkService;
 	@Autowired
 	ReviewService reviewService;
+	@Autowired
+	RequestService requestService;
 
 	// AddBidding
 	@PostMapping("/addbidiingbylabour/{labourId}/{workId}")
@@ -111,17 +118,40 @@ public class LabourController {
 		}
 	}
 
-	//get all contractor list by pincode
+	// get all contractor list by pincode
 	@GetMapping("/getallcontractorsbypincode/{labourId}")
-	public List<Contractor> getallContractorsByPincode(@PathVariable int labourId)
-	{
+	public List<Contractor> getallContractorsByPincode(@PathVariable int labourId) {
 		Labour labour = this.labourService.getLabourById(labourId);
 		User user = labour.getUser();
-		String pin= user.getPincode();
+		String pin = user.getPincode();
+
+		return this.contractorService.getAllcContractorByPincode(pin);
+	}
+
+	// send request to contractor
+	@GetMapping("/sendRequest/{labourId}/{ContractorId}")
+	public ResponseEntity<HttpStatus> sendRequestToContractor(@PathVariable int labourId,
+			@PathVariable int contractorId, @RequestBody Requests requests) {
+		Contractor contractor = this.contractorService.getContractorByContractorId(contractorId);
+		Labour labour = this.labourService.getLabourById(labourId);
+		Contractor check = labour.getContractor();
+		if (contractor != check) {
+			requests.setContractor(contractor);
+			requests.setLabour(labour);
+			this.requestService.addRequest(requests);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		
-	return this.contractorService.getAllcContractorByPincode(pin);
 	}
 	
+	//getLabourRequestList
 	
-	
+	@GetMapping("/getAllRequestByLabourid/{labourId}")
+	public List<Requests> getAllrequestByLabourId(@PathVariable int labourId)
+	{
+		return this.requestService.getAllRequestsByLabourId(labourId);
+	}
+
 }

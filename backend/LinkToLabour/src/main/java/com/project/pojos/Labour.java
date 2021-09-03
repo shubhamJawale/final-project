@@ -42,7 +42,9 @@ public class Labour {
 	
 	@OneToMany(mappedBy = "labour", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Bidding> biddingList;
-
+	
+	@OneToMany(mappedBy = "labour", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Requests> requestList;
 
 	public Labour() {
 		super();
@@ -55,6 +57,18 @@ public class Labour {
 		this.labourId = labourId;
 		this.user = user;
 		this.contractor = contractor;
+	}
+
+
+	public Labour(int labourId, User user, Contractor contractor, List<Review> reviewList, List<Bidding> biddingList,
+			List<Requests> requestList) {
+		super();
+		this.labourId = labourId;
+		this.user = user;
+		this.contractor = contractor;
+		this.reviewList = reviewList;
+		this.biddingList = biddingList;
+		this.requestList = requestList;
 	}
 
 
@@ -114,12 +128,25 @@ public class Labour {
 		this.biddingList = biddingList;
 	}
 
+	@JsonIgnore
+	public List<Requests> getRequestList() {
+		return requestList;
+	}
+
+	@JsonProperty
+	public void setRequestList(List<Requests> requestList) {
+		this.requestList = requestList;
+	}
+
 
 	@Override
 	public String toString() {
 		return "Labour [labourId=" + labourId + ", user=" + user + ", contractor=" + contractor + ", reviewList="
-				+ reviewList + ", biddingList=" + biddingList + "]";
+				+ reviewList + ", biddingList=" + biddingList + ", requestList=" + requestList + "]";
 	}
+
+
+
 
 
 

@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,7 @@ import com.project.pojos.AssignedWork;
 import com.project.pojos.Bidding;
 import com.project.pojos.Contractor;
 import com.project.pojos.Labour;
+import com.project.pojos.Requests;
 import com.project.pojos.Review;
 import com.project.pojos.Role;
 import com.project.pojos.Status;
@@ -27,6 +30,7 @@ import com.project.service.AssignedWorkService;
 import com.project.service.BiddingService;
 import com.project.service.ContractorService;
 import com.project.service.LabourService;
+import com.project.service.RequestService;
 import com.project.service.ReviewService;
 import com.project.service.UserService;
 import com.project.service.WorkService;
@@ -51,6 +55,8 @@ public class ContractorController {
 	ReviewService reviewService;
 	@Autowired
 	BiddingService biddingService;
+	@Autowired
+	RequestService requestService;
 
 	// GetUSerdataForContractorId
 	@GetMapping("/getdataBycontractorId/{contractorId}")
@@ -172,5 +178,26 @@ public class ContractorController {
 		return "Deleted succesfull";
 	}
 	
+	
+	//accept request
+	@GetMapping("/acceptrequest/{requestId}")
+	public ResponseEntity<HttpStatus> acceptRequest(@PathVariable int requestId)
+	{
+		Requests request = this.requestService.getRequestByRequestId(requestId);
+		Contractor contractor = request.getContractor();
+		Labour labour = request.getLabour();
+		labour.setContractor(contractor);
+		this.contractorService.addContractor(contractor);
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	
+	//getAllRequestsByContractorId
+	@GetMapping("/getallrequestbycontractorid/{contractorId}")
+	public List<Requests> getAllRequestsByContractorId(@PathVariable int contractorId)
+	{
+		return this.requestService.getAllRequestsByContractorId(contractorId);
+	}
 
 }

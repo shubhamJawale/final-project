@@ -21,7 +21,8 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-@JsonIgnoreProperties({"hibernateLazyInitializer"})
+
+@JsonIgnoreProperties({ "hibernateLazyInitializer" })
 @Entity
 public class Contractor {
 	@Id
@@ -42,10 +43,14 @@ public class Contractor {
 	@OneToMany(mappedBy = "contractor", fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE,
 			CascadeType.PERSIST, CascadeType.REFRESH })
 	private List<Labour> labourList;
-	
+
 	@OneToMany(mappedBy = "contractor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 
 	private List<Review> reviewList;
+
+	@OneToMany(mappedBy = "contractor", fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE,
+			CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
+	private List<Requests> requestList;
 
 	public Contractor() {
 		super();
@@ -65,6 +70,20 @@ public class Contractor {
 		LicenceNo = licenceNo;
 		ExpiryDate = expiryDate;
 		this.user = user;
+	}
+	
+
+	public Contractor(int contractorId, @NotNull String licenceNo, @NotNull LocalDate expiryDate, User user,
+			List<Bidding> biddingList, List<Labour> labourList, List<Review> reviewList, List<Requests> requestList) {
+		super();
+		this.contractorId = contractorId;
+		LicenceNo = licenceNo;
+		ExpiryDate = expiryDate;
+		this.user = user;
+		this.biddingList = biddingList;
+		this.labourList = labourList;
+		this.reviewList = reviewList;
+		this.requestList = requestList;
 	}
 
 	public Contractor(int contractorId, @NotNull String licenceNo, @NotNull LocalDate expiryDate, User user,
@@ -142,12 +161,22 @@ public class Contractor {
 	public void setReviewList(List<Review> reviewList) {
 		this.reviewList = reviewList;
 	}
+	@JsonIgnore
+	public List<Requests> getRequestList() {
+		return requestList;
+	}
+	@JsonProperty
+	public void setRequestList(List<Requests> requestList) {
+		this.requestList = requestList;
+	}
 
 	@Override
 	public String toString() {
 		return "Contractor [contractorId=" + contractorId + ", LicenceNo=" + LicenceNo + ", ExpiryDate=" + ExpiryDate
 				+ ", user=" + user + ", biddingList=" + biddingList + ", labourList=" + labourList + ", reviewList="
-				+ reviewList + "]";
+				+ reviewList + ", requestList=" + requestList + "]";
 	}
+
+	
 
 }
