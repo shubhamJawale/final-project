@@ -13,15 +13,12 @@ import com.project.pojos.Work;
 @Repository
 public interface BiddingRepo extends JpaRepository<Bidding, Integer> {
 
-	
-	@Query("select b from Bidding b where b.work.WorkId = ?1") 
-	public List<Bidding> getAllbyWorkId(int id);
+	@Query("select b from Bidding b where b.work.WorkId = ?1")
+	List<Bidding> getAllbyWorkId(int id);
 
 	@Query("update Bidding b set b.status='ACCEPTED' where b.biddingId= ?1")
-    public void updateBiddingStatus(int biddingId);
+	void updateBiddingStatus(int biddingId);
+	@Query("select b from Bidding b where b.contractor.contractorId= ?1")
+	List<Bidding> getBiddingsbyContractorId(int contractorId);
 	
-	
-	
-
-
 }

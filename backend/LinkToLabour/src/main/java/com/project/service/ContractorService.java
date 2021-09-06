@@ -17,6 +17,7 @@ public interface ContractorService {
 	
 	public Contractor getContractorByContractorId(int contractorId);
 	
+	public Contractor getContractorByUserId(int userId);
 
 	/* public Contractor getContractorBylabour(Labour labour); */
 }

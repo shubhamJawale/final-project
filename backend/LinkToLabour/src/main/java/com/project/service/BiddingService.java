@@ -17,5 +17,6 @@ public interface BiddingService {
 	public void updateBidStatus(int biddingId);
 	
 	public Bidding getBiddingById(int biddingId);
-
+	
+	List<Bidding> getBiddingByContractorId(int contractorId);
 }

@@ -32,7 +32,7 @@ RequestRepo requestRepo;
 	@Override
 	public Requests getRequestByRequestId(int RequestId) {
 	
-		return this.requestRepo.getById(null);
+		return this.requestRepo.getById(RequestId);
 	}
 
 	@Override
@@ -42,9 +42,13 @@ RequestRepo requestRepo;
 	}
 
 	@Override
-	public void deleteRequest(int requestId) {
-	 Requests requests = this.requestRepo.getById(requestId);
-		this.requestRepo.delete(requests);
+	public void deleterequestfromtable(int id) {
+		this.requestRepo.deleterequestwithrequestid(id);
+		
 	}
+
+	
+
+
 
 }

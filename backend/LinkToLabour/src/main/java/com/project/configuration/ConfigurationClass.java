@@ -12,7 +12,7 @@ public class ConfigurationClass extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/user/**","/contractor/**", "/labour/**").permitAll().anyRequest().authenticated()
+		http.authorizeRequests().antMatchers("/user/**","/contractor/**", "/labour/**","/register","/login","/update").permitAll().anyRequest().authenticated()
 	       .and().csrf().disable();
 		// super.configure(http);
 	}

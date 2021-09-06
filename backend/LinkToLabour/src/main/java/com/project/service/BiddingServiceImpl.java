@@ -54,6 +54,12 @@ public class BiddingServiceImpl implements BiddingService {
 		
 		return this.biddingRepo.getById(biddingId);
 	}
+
+	@Override
+	public List<Bidding> getBiddingByContractorId(int contractorId) {
+		
+		return this.biddingRepo.getBiddingsbyContractorId(contractorId);
+	}
 	
 	
 

@@ -17,5 +17,5 @@ public interface LabourService {
 		
 		public Labour getLabourById(int labourId);
 		public List<Labour> getLabourByContractorId(int contractorId);
-
+		public Labour getLbaourByUserId(int userId);
 }

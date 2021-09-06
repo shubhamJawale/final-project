@@ -28,7 +28,7 @@ public class Requests {
 		super();
 	}
 
-	public Requests(int requestid, String note, Labour labour, com.project.pojos.Contractor contractor) {
+	public Requests(int requestid, String note, Labour labour, Contractor contractor) {
 		super();
 		this.requestid = requestid;
 		Note = note;
@@ -36,7 +36,7 @@ public class Requests {
 		contractor = contractor;
 	}
 
-	public Requests(String note, Labour labour, com.project.pojos.Contractor contractor) {
+	public Requests(String note, Labour labour, Contractor contractor) {
 		super();
 		Note = note;
 		this.labour = labour;

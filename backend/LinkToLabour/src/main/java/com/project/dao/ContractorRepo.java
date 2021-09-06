@@ -10,19 +10,16 @@ import com.project.pojos.Contractor;
 import com.project.pojos.Labour;
 import com.project.pojos.User;
 import com.project.pojos.Work;
+
 @Repository
-public interface ContractorRepo extends JpaRepository<Contractor, Integer>{
+public interface ContractorRepo extends JpaRepository<Contractor, Integer> {
 
 	@Query("select t from Contractor t where t.user.pincode = ?1")
-	public	 List<Contractor> getContractorBypinCode(String pincode);
-	
+	 List<Contractor> getContractorBypinCode(String pincode);
 
-	/*
-	 * @Query("select t from Contractor t where t.contractor = ?1") public
-	 * List<Labour> getLabourListByContractor(Contractor contracotr);
-	 */
 	
+	  @Query("select t from Contractor t where t.user.userId = ?1") 
+	  Contractor getContractorByUserId (int userId);
+	 
+
 }
-	
-	
-

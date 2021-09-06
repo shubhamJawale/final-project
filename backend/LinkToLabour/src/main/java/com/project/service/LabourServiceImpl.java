@@ -50,7 +50,14 @@ LabourRepo labourRepo;
 	@Override
 	public List<Labour> getLabourByContractorId(int contractorId) {
 		
-		return this.getLabourByContractorId(contractorId);
+		return this.labourRepo.getLabourBycontractorsId(contractorId);
+	}
+
+
+	@Override
+	public Labour getLbaourByUserId(int userId) {
+		
+		return this.labourRepo.getLabourByUserId(userId);
 	}
 
 }

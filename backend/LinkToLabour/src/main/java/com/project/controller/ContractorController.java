@@ -1,13 +1,18 @@
 package com.project.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +20,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.dto.AssignedWorkDto;
+import com.project.dto.BiddingUserWorkdto;
+import com.project.dto.LabourUserContractorDto;
+import com.project.dto.requestContractorLabourDto;
 import com.project.pojos.AssignedWork;
 import com.project.pojos.Bidding;
 import com.project.pojos.Contractor;
@@ -69,9 +78,10 @@ public class ContractorController {
 	}
 
 	// update professional details
-	@PostMapping("/updatecontractorProfessionalDetails")
-	public String UpdateContractor(@RequestBody Contractor contractor) {
-
+	@PostMapping("/updatecontractorProfessionalDetails/{userId}")
+	public String UpdateContractor(@RequestBody Contractor contractor, @PathVariable int userId) {
+		User user = this.userService.getUserById(userId);
+		contractor.setUser(user);
 		this.contractorService.addContractor(contractor);
 		return "UpdatedSuccessFully!!";
 	}
@@ -187,7 +197,9 @@ public class ContractorController {
 		Contractor contractor = request.getContractor();
 		Labour labour = request.getLabour();
 		labour.setContractor(contractor);
-		this.contractorService.addContractor(contractor);
+		this.labourService.addLabour(labour);
+		
+		this.deleteRequest(requestId);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
@@ -198,6 +210,151 @@ public class ContractorController {
 	public List<Requests> getAllRequestsByContractorId(@PathVariable int contractorId)
 	{
 		return this.requestService.getAllRequestsByContractorId(contractorId);
+	}
+	
+	
+	///////////===========================================================
+	@GetMapping("/getBiddingsdetailsforContractor/{contractorId}")
+	public List<BiddingUserWorkdto> getAllBiddingDetailsForContractor(@PathVariable int contractorId)
+	{
+		List<Bidding> bl = this.biddingService.getBiddingByContractorId(contractorId);
+		
+		ListIterator<Bidding> i = bl.listIterator();
+		List<BiddingUserWorkdto> buw = new ArrayList<BiddingUserWorkdto>();
+		while (i.hasNext())
+		{
+			Bidding b = (Bidding)i.next();
+			Work w = this.workService.getWorkByWorkId(b.getWork().getWorkId());
+			User u = this.userService.getUserById(w.getUser().getUserId());
+			
+			BiddingUserWorkdto obj = new BiddingUserWorkdto();
+			obj.setBamount(b.getAmount());
+			obj.setBdescription(b.getDescription());
+			obj.setBfromDate(b.getFromDate());
+			obj.setBiddingId(b.getBiddingId());
+			obj.setBstatus(b.getStatus());
+			obj.setBtoDate(b.getToDate());
+			obj.setUserId(u.getUserId());
+			obj.setUserName(u.getUserName());
+			obj.setWdescription(w.getDescription());
+			obj.setWorkId(w.getWorkId());
+			obj.setWtitle(w.getTitle());
+			
+			buw.add(obj);
+
+		}
+		
+		return buw;		
+	}
+	
+	
+	
+	
+	@GetMapping("/getalldata/AssignedWork/{contractorId}")
+	public List<AssignedWorkDto> getalldataAssignedWorkById(@PathVariable int contractorId)
+	{
+		
+		List<AssignedWork> aw = this.assignedWorkService.getAssignedWorkByContractorsId(contractorId);
+		List<AssignedWorkDto> asw = new ArrayList<AssignedWorkDto>();
+		ListIterator<AssignedWork> pt1 = aw.listIterator();
+		while(pt1.hasNext())
+		{
+			AssignedWork aw1 = (AssignedWork)pt1.next();
+			AssignedWorkDto asw1 = new AssignedWorkDto();
+			asw1.setAssignedWorkId(aw1.getAssignedWorkId());
+			asw1.setAstatus(aw1.getStatus());
+			asw1.setBiddingId(aw1.getBidding().getBiddingId());
+			asw1.setBamount(aw1.getBidding().getAmount());
+			asw1.setBdescription(aw1.getBidding().getDescription());
+			asw1.setBfromDate(aw1.getBidding().getFromDate());
+			asw1.setBtoDate(aw1.getBidding().getToDate());
+			if(aw1.getBidding().getContractor()!=null) {
+			asw1.setContractorId(aw1.getBidding().getContractor().getContractorId());}
+			if(aw1.getBidding().getLabour()!=null) {
+			asw1.setLabourId(aw1.getBidding().getLabour().getLabourId());}
+			asw1.setDescription(aw1.getWork().getDescription());
+			asw1.setExpectedAmount(aw1.getWork().getExpectedAmount());
+			asw1.setFromDate(aw1.getWork().getFromDate());
+			asw1.setPinCode(aw1.getWork().getPinCode());
+			asw1.setToDate(aw1.getWork().getToDate());
+			asw1.setTitle(aw1.getWork().getTitle());
+			asw1.setWorkType(aw1.getWork().getWorkType());
+			asw1.setWorkId(aw1.getWork().getWorkId());
+			asw1.setWorkType(aw1.getWork().getWorkType());
+			asw1.setWstatus(aw1.getWork().getStatus());
+			asw1.setUid(aw1.getWork().getUser().getUserId());
+			asw1.setUserName(aw1.getWork().getUser().getUserName());
+			asw.add(asw1);
+			
+			
+		}
+		
+		return asw;
+		
+	}
+	
+	
+	@GetMapping("/getAllLaboursForContractor/{contractorId}")
+	public List<LabourUserContractorDto> getAllLaboursBYCOntractorId(@PathVariable int contractorId)
+	{
+		List<Labour> ll = this.labourService.getLabourByContractorId(contractorId);
+		List<LabourUserContractorDto> luc = new ArrayList<LabourUserContractorDto>();
+		
+		ListIterator<Labour> i = ll.listIterator();
+		while(i.hasNext())
+		{
+			Labour l = (Labour) i.next();
+			LabourUserContractorDto lc = new LabourUserContractorDto();
+			lc.setUserId(l.getUser().getUserId());
+			lc.setUserName(l.getUser().getUserName());
+			lc.setAddress(l.getUser().getAddress());
+			lc.setEmailId(l.getUser().getEmailId());
+			lc.setMobileNo(l.getUser().getMobileNo());
+			lc.setPincode(l.getUser().getPincode());
+			lc.setLabourId(l.getLabourId());
+			
+			luc.add(lc);
+		}
+		return luc;
+		
+		
+	}
+	
+	
+	@GetMapping("/getAllRequests/{contractorId}")
+	public List<requestContractorLabourDto> getAllrequestByContractorId(@PathVariable int contractorId)
+	{
+		List<Requests> rl =this.requestService.getAllRequestsByContractorId(contractorId);
+		List<requestContractorLabourDto> rcl = new ArrayList<requestContractorLabourDto>();
+		ListIterator<Requests> i = rl.listIterator();
+		while(i.hasNext()) {
+			Requests r = (Requests) i.next();
+			requestContractorLabourDto obj = new requestContractorLabourDto();
+			obj.setAddress(r.getLabour().getUser().getAddress());
+			obj.setContractorId(contractorId);
+			obj.setEmailId(r.getLabour().getUser().getEmailId());
+			obj.setExpiryDate(r.getContractor().getExpiryDate());
+			obj.setLabourId(r.getLabour().getLabourId());
+			obj.setLiceneNo(r.getContractor().getLicenceNo());
+			obj.setMobileNo(r.getLabour().getUser().getMobileNo());
+			obj.setNote(r.getNote());
+			obj.setPincode(r.getLabour().getUser().getPincode());
+			obj.setRequestid(r.getRequestid());
+			obj.setUserId(r.getLabour().getUser().getUserId());
+			obj.setUserName(r.getLabour().getUser().getUserName());
+			rcl.add(obj);
+			
+		}
+	return rcl;
+	}
+	
+	@Transactional
+	@Modifying
+	@DeleteMapping("/DeleteRequest/{requestId}")
+	public void deleteRequest(@PathVariable int requestId)
+	{	
+		
+		this.requestService.deleterequestfromtable(requestId);
 	}
 
 }

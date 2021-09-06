@@ -12,7 +12,7 @@ import com.project.pojos.User;
 
 public interface AssignedWorkService {
 	
-	
+	 AssignedWork getAssignedWorkByAssignedWorkId(int AssignedWorkId);
 	public void addAssignedWork(AssignedWork assignedWork);
 	
 	public List<AssignedWork> getAllAssignedWork();

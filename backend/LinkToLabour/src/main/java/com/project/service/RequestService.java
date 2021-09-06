@@ -14,7 +14,8 @@ public interface RequestService {
 	public Requests getRequestByRequestId(int RequestId);
 	
 	public void addRequest(Requests requests);
-	public void deleteRequest(int requestId);
 	
+	
+	public void deleterequestfromtable(int id);
 	
 }
